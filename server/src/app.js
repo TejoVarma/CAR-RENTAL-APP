@@ -12,4 +12,5 @@ app.use(cors());
 app.use('/admin', carRoutes);
 app.use('/user',bookingRoutes)
 app.use('/api',require ("./routes/user.router"));
+app.use('/api',require ("./routes/admin.router"));
 module.exports = app;
