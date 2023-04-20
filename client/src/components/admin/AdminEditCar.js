@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, Outlet, useNavigate, useParams } from "react-router-dom";
-import { getCarById } from "../../utils/adminData";
+import { deleteCar, editCar, getCarById } from "../../utils/adminData";
 import AdminHeader from "./AdminHeader";
 import ImagePreview from "./ImagePreview";
 import { CarList } from "../../contexts/AdminContexts";
@@ -8,6 +8,7 @@ import { CarList } from "../../contexts/AdminContexts";
 export default function AdminEditCar(){
     const { id } = useParams();
     const {addPreview} = useContext(CarList);
+    const [edit,setEdit] = useState(false);
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         carname: "",
@@ -39,43 +40,61 @@ export default function AdminEditCar(){
         });
     },[]);
     // console.log(car);
-    // function formValidation(e) {
-    //     e.preventDefault();
-    //     // setLoader(true);
-
-    //     const car = new FormData(e.target);
-    //     addNewCar(car)
-    //     .then(res => {
-    //         if(res.status === "Success") {
-    //             addCar(res.result);
-    //             addPreview("");
-    //             setFormData({
-    //                 carname: "",
-    //                 type: "",
-    //                 model: "",
-    //                 mileage: "",
-    //                 perkm: "",
-    //                 availablefrom: "",
-    //                 availabletill: "",
-    //                 description: "",
-    //                 cardetails: "",
-    //                 details: ""
-    //             });
-    //             setLoader(false);
-    //             navigate("/admin")
-    //         } else {
-    //             setLoader(false);
-    //             alert("Failed to add car, try again...")
-    //         }
-            
-    //     })
-    // }
+    function formValidation(e) {
+        e.preventDefault();
+        // setLoader(true);
+        if(edit)
+        {
+            const car = new FormData(e.target);
+            editCar(car, id)
+            .then(res => {
+                if(res.status === "Success") {
+                    setFormData({
+                        carname: "",
+                        type: "",
+                        model: "",
+                        mileage: "",
+                        perkm: "",
+                        availablefrom: "",
+                        availabletill: "",
+                        description: "",
+                        cardetails: "",
+                        details: ""
+                    });
+                    // setLoader(false);
+                    navigate("/admin");
+                    window.location.reload();
+                } else {
+                    // setLoader(false);
+                    alert("Failed to edit car, try again...")
+                }
+                
+            })   
+        }
+        else
+        {
+            deleteCar(id)
+            .then(res => {
+                if(res.status === "Success")
+                {
+                    setEdit(false);
+                    navigate('/admin')
+                    window.location.reload();
+                }
+                else
+                {
+                    setEdit(false);
+                    alert("Failed to delete car, try again...")
+                }
+            })
+        }
+    }
     return <div>
         <AdminHeader/>
         <div className="add-car-body">
             <div className="add-car-heading"><h2>Edit Car Details</h2></div>
             <div className="form-container">
-                <form>
+                <form onSubmit={formValidation}>
                     <div className="sections">
                         <div className="left-section">
                             <div className="field-container">
@@ -148,7 +167,7 @@ export default function AdminEditCar(){
                             <div className="field-container flex">
                                 <div className="flex-boxes">
                                     <label className="labels" htmlFor="availablefrom">Available From</label>
-                                    <input type={'date'} id="availablefrom" name="availablefrom" placeholder="DD MM YYYY" value={formData.availablefrom} required onChange={(e) => {
+                                    <input type={'date'} id="availablefrom" name="availablefrom" placeholder="DD MM YYYY" value={formData.availablefrom} onChange={(e) => {
                                     setFormData(data => {
                                         return {
                                             ...data,
@@ -159,7 +178,7 @@ export default function AdminEditCar(){
                                 </div>
                                 <div className="flex-boxes">
                                     <label className="labels" htmlFor="availabletill">Available Till</label>
-                                    <input type={'date'} id="availabletill" name="availabletill" placeholder="DD MM YYYY" required value={formData.availabletill} onChange={(e) => {
+                                    <input type={'date'} id="availabletill" name="availabletill" placeholder="DD MM YYYY" value={formData.availabletill} onChange={(e) => {
                                     setFormData(data => {
                                         return {
                                             ...data,
@@ -184,7 +203,7 @@ export default function AdminEditCar(){
                         <div className="right-section">
                             <div className="field-container">
                                 <label className="labels" htmlFor="file">Image</label>
-                                <input type={"file"} id="file" name="image" accept="image/*" required onChange={(e) => {
+                                <input type={"file"} id="file" name="image" accept="image/*" onChange={(e) => {
                                     addPreview(URL.createObjectURL(e.target.files[0]));
                                     setFormData(data => {
                                         return {
@@ -225,7 +244,7 @@ export default function AdminEditCar(){
                         <div className="field-container flex-boxes post">
                             <div>
                                 <button className="submit-button delete" type={"submit"}>Delete</button>
-                                <button className="submit-button save" type={"submit"}>Save</button>
+                                <button className="submit-button save" type={"submit"} onClick={()=>setEdit(true)}>Save</button>
                             </div>
                         </div>
                     </div>
