@@ -20,8 +20,18 @@ export function addNewCar(car) {
     .catch(err => alert(err.message));
 }
 
-export function editCar(id){
+export function editCar(car,id){
     return fetch(`${URL}/admin/car/${id}`, {
-        
+        method : "PUT",
+        body : car
     })
+    .then(res=>res.json())
+    .catch(err => alert(err.message))
+}
+export function deleteCar(id){
+    return fetch(`${URL}/admin/car/${id}`, {
+        method : "DELETE"
+    })
+    .then(res=>res.json())
+    .catch(err => alert(err.message))
 }
