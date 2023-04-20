@@ -33,6 +33,16 @@ carDetailsController.getCars = async function(req,res){
         res.status(400).json({status : "Failed", message : err.message});
     }
 };
+carDetailsController.getCarById = async function(req,res){
+    try{
+        let car = await CAR_DETAILS.findById(req.params.id);
+        res.status(200).json({status : "Success", result: car});
+    }
+    catch(err)
+    {
+        res.status(400).json({status : "Failed", message : err.message});
+    }
+}
 
 carDetailsController.load = async function(req, res){
     try{

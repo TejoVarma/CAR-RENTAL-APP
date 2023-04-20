@@ -14,7 +14,7 @@ export default function Routers(){
         <Routes>
             <Route path ="/admin" element={<Admin/>}/>
             <Route path='/admin/addcar' element={<AdminAddCar/>}/>
-            <Route path='/admin/:id' element={<AdminEditCar/>}/>
+            <Route path='/admin/edit/:id' element={<AdminEditCar/>}/>
             <Route path="/booking" element={<BookingPage/>}/>
             <Route path="/mybookings" element={<MyBooking/>}/>
             <Route path="/bookingdetails" element={<BookingDetails/>}/>

@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { CarList } from "../../contexts/AdminContexts";
+import '../../styles/Admin.css'
 
 export default function ImagePreview() {
 
