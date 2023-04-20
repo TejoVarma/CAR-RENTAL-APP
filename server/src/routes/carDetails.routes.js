@@ -23,7 +23,7 @@ routers.post("/newcar", fileUpload.single("image"), carController.addNewCar);
 
 routers.get("/cars", carController.getCars);
 
-routers.put("/car/:id", carController.editCar);
+routers.put("/car/:id",fileUpload.single("image"), carController.editCar);
 
 routers.delete("/car/:id", carController.deleteCar);
 

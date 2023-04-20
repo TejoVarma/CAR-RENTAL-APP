@@ -1,5 +1,6 @@
 const CAR_DETAILS = require('../models/carDetails.model');
 require('dotenv').config();
+const uuid = require('uuid');
 const MongoClient = require("mongodb").MongoClient;
 const GridFSBucket = require("mongodb").GridFSBucket;
 const client = new MongoClient(process.env.DB_URL);
@@ -10,6 +11,7 @@ carDetailsController.addNewCar = async function(req,res){
     {
         let car = await new CAR_DETAILS({
             ...req.body,
+            _id : uuid.v4(),
             image : `image/${req.file.filename}`
         });
         let newCar = car.save();
@@ -57,12 +59,13 @@ carDetailsController.load = async function(req, res){
 carDetailsController.editCar = async function(req,res){
     try{
         let car = await CAR_DETAILS.findById(req.params.id);
-        console.log(car);
+        // console.log(car);
         if(car)
         {
+            console.log(req.body);
            let updatedCar =  await CAR_DETAILS.findByIdAndUpdate(req.params.id, {...req.body}, {new : true});
-           console.log(updatedCar);
-        //    await updatedCar.save();
+        //    console.log(updatedCar);
+           await updatedCar.save();
            res.status(200).json({status : "Success", result : updatedCar});
         }
         else
