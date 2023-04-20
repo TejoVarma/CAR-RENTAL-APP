@@ -1,11 +1,9 @@
 const mongoose = require('mongoose');
-const uuid = require('uuid');
 const Schema = mongoose.Schema;
 
 const carDetailsSchema = Schema({
     _id : {
         type : String,
-        default : uuid.v4()
     },
     carname : {
         type : String,
