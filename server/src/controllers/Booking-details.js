@@ -1,4 +1,5 @@
 const carBooking = require("../models/Car-booking");
+const Cars = require("../models/carDetails.model");
 exports.getbookingdetails = async (req, res) => {
   try {
     const users = await carBooking.find({});
@@ -6,7 +7,7 @@ exports.getbookingdetails = async (req, res) => {
       success: true,
       userCount: users.length,
       message: "All users Data",
-      users,
+      data:users,
     });
   } catch (err) {
     console.log(err);
@@ -93,16 +94,31 @@ exports.deletebooking = async (req, res) => {
       });
     }
     return res.status(200).send({
-        success: true,
-        message: "Booking Details Deleted Succesfully",
-        booking,
-
-    })
+      success: true,
+      message: "Booking Details Deleted Succesfully",
+      booking,
+    });
   } catch (err) {
     console.log(err);
     return res.status(500).send({
       success: false,
       message: "error in deleting booking details",
+      err,
+    });
+  }
+};
+exports.getAllCars = async (req, res) => {
+  try {
+    let cars = await Cars.find();
+    res.status(200).send({
+      success: true,
+      message: "all car details",
+      data: cars,
+    });
+  } catch (err) {
+    res.status(400).send({
+      success: false,
+      message: "failed to get car details",
       err,
     });
   }
