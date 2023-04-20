@@ -27,12 +27,8 @@ export default function AdminAddCar() {
         e.preventDefault();
         setLoader(true);
 
-        const post = new FormData(e.target);
-        post.append("date", new Date().toDateString());
-        post.append("likes", 0);
-        post.append("id", Date.now());
-        
-        addNewCar(post)
+        const car = new FormData(e.target);
+        addNewCar(car)
         .then(res => {
             if(res.status === "Success") {
                 addCar(res.result);
@@ -61,6 +57,7 @@ export default function AdminAddCar() {
     return <>
         <AdminHeader/>
         <div className="add-car-body">
+            <div className="add-car-heading"><h2>Add Car Details</h2></div>
             <div className="form-container">
                 <form onSubmit={formValidation}>
                     <div className="sections">
@@ -158,14 +155,13 @@ export default function AdminAddCar() {
                             </div>
                             <div className="field-container">
                                 <label className="labels" htmlFor="description">Description</label>
-                                <input type={"text"} id="description" name="description" placeholder="description" value={formData.description} required onChange={(e) => {
+                                <textarea rows="5" cols="60" name="description" id="description" placeholder="Description" value={formData.description} required onChange={(e) => {
                                     setFormData(data => {
                                         return {
                                             ...data,
                                             description: e.target.value
                                         }
-                                    })
-                                }} />
+                                })}}></textarea>
                             </div>
                         </div>
                         <div className="right-section">
@@ -186,33 +182,33 @@ export default function AdminAddCar() {
                             </div>
                             <div className="field-container">
                                 <label className="labels" htmlFor="cardetails">Car Details</label>
-                                <input type={"text"} id="cardetails" name="cardetails" placeholder="Car Details" value={formData.cardetails} required onChange={(e) => {
+                                <textarea rows="5" cols="60" name="cardetails" id="cardetails" placeholder="Car Details" value={formData.cardetails} required onChange={(e) => {
                                     setFormData(data => {
                                         return {
                                             ...data,
                                             cardetails: e.target.value
                                         }
-                                    })
-                                }} />
+                                })}}></textarea>
                             </div>
                             <div className="field-container">
                                 <label className="labels" htmlFor="details">Details</label>
-                                <input type={"text"} id="details" name="details" placeholder="Details" value={formData.details} required onChange={(e) => {
+                                <textarea rows="5" cols="60" name="details" id="details" placeholder="Details" value={formData.details} required onChange={(e) => {
                                     setFormData(data => {
                                         return {
                                             ...data,
                                             details: e.target.value
                                         }
-                                    })
-                                }} />
+                                })}}></textarea>
                             </div>
                         </div>
                     </div>
-                    <div className="field-container">
-                        <button className="cancel-button" onClick={()=> navigate('/admin')}>Cancel</button>
-                    </div>
-                    <div className="field-container">
-                        <button className="submit-button" type={"submit"}>Post</button>
+                    <div className="buttons-container">
+                        <div className="field-container flex-boxes">
+                            <button className="cancel-button" onClick={()=> navigate('/admin')}>Cancel</button>
+                        </div>
+                        <div className="field-container flex-boxes post">
+                            <button className="submit-button" type={"submit"}>Post</button>
+                        </div>
                     </div>
                 </form>
             </div>

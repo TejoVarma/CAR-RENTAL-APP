@@ -7,7 +7,11 @@ export default function AdminHeader() {
     return (
       <div className='header'>
         <div className='logo'>LOGO</div>
-        <div className='logout' onClick={()=>{navigate('/')}}>Logout</div>
+        <div className='logout-container'>
+          <div className="logout-text-container">
+            <p onClick={()=>{navigate('/')}}>Logout</p>
+          </div>
+        </div>
       </div>
     )
 };

@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { CarList } from "../../contexts/AdminContexts";
 
 export default function Cars({ car }) {
     const { carname, perkm, availablefrom, availabletill, image } = car;
     const { id } = useParams();
+    const {singleCar, handleClick} = useContext(CarList);
     return <div className="card-container">
-            <Link to={`/${car._id}`}>
+            <Link to={`edit/${car._id}`}>
                 <section className="image-container">
                     <img className="image" src={`http://localhost:4000/admin/${image}`} alt="car"/>
                 </section>

@@ -1,6 +1,9 @@
+body{
+    width: 100vw;
+    height: 100vh;
+}
 .header {
     display: flex;
-    justify-content: space-between;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     box-shadow: 0px 3px 6px #CBCBCB29;
     border: 1px solid #f0f0f0;
@@ -11,21 +14,30 @@
 
 .logo {
     color: #007FED;
+    width: 50%;
+    margin: 10px;
     padding-left: 2rem;
     letter-spacing: 2.4px;
+    font-size: 24px;
     font-weight: bold;
 }
 
-.logout {
-    padding-right: 2rem;
+.logout-container {
+    width: 50%;
     font: normal normal medium 20px/25px Helvetica Neue;
     letter-spacing: 0px;
     color: #707070;
+    font-size: 24px;
     opacity: 1;
-
 }
-
-.logout:hover {
+.logout-text-container{
+    margin-left: 85%;
+}
+.logout-text-container>p{
+    width: 71px;
+    margin : 10px;
+}
+.logout-text-container>p:hover {
     cursor: pointer;
     color: orangered;
 }
@@ -140,12 +152,18 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 15px;
 }
+.add-car-heading{
+    margin-left: 100px;
+}
 .field-container{
     margin : 30px;
 }
 .form-container{
     margin-left: 100px;
     margin-right: 100px;
+    margin-bottom: 20px;
+    border: 1px solid grey;
+    box-shadow: 0 5px 5px 0;
 }
 .sections{
     display: flex;
@@ -159,6 +177,8 @@
 }
 .labels{
     display: block;
+    font-size: 22px;
+    color: #2D2D2E;
 }
 .flex{
     display: flex;
@@ -166,4 +186,57 @@
 .flex-boxes
 {
     width: 50%;
+}
+.buttons-container{
+    display: flex;
+}
+#carname{
+    margin-top: 10px;
+    width: 90%;
+    height: 41px;
+    font-size: 20px;
+}
+#type, #model, #mileage, #perkm, #availablefrom, #availabletill,#file
+{
+    margin-top: 10px;
+    width: 301px;
+    height: 41px;
+    font-size: 20px;
+}
+#description{
+    margin-top: 10px;
+    width: 90%;
+    height: 150px;
+    font-size: 20px;
+}
+#preview-img-container>img{
+    width: 200px
+}
+#cardetails, #details{
+    font-size: 20px;
+}
+.cancel-button{
+    width: 200px;
+    height: 50px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    border: 1px solid #007FED;
+    color: #007FED;
+    border-radius: 25px;
+}
+.post{
+    text-align: center;
+}
+.submit-button{
+    width: 200px;
+    height: 50px;
+    border-radius: 25px;
+    border: none;
+    background-color: #007FED;
+    font-size: 20px;
+    color: white;
+}
+.delete{
+    margin-right: 10px;
 }
