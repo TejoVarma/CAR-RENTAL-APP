@@ -9,10 +9,18 @@ import BookingDetails from "../components/user/BookingDetails";
 import CarBooking from "../components/user/CarBooking";
 import EditBookingDetails from "../components/user/EditBookingDetails";
 import ModifyBooking from "../components/user/ModifyBooking";
+import AdminSignup from "../components/login/AdminSignup";
+import AdminLogin from "../components/login/AdminLogin";
+import UserSignup from "../components/login/UserSignup";
+import UserLogin from "../components/login/UserLogin";
 
 export default function Routers(){
     return <BrowserRouter>
         <Routes>
+            <Route path ="/" element={<AdminLogin/>}/>
+            <Route path ="/adminsignup" element={<AdminSignup/>}/>
+            <Route path ="/usersignup" element={<UserSignup/>}/>
+            <Route path ="/userlogin" element={<UserLogin/>}/>
             <Route path ="/admin" element={<Admin/>}/>
             <Route path='/admin/addcar' element={<AdminAddCar/>}/>
             <Route path='/admin/edit/:id' element={<AdminEditCar/>}/>
