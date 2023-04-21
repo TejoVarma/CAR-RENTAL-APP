@@ -29,4 +29,6 @@ routers.delete("/car/:id", carController.deleteCar);
 
 routers.get("/image/:name", carController.load);
 
+routers.get('/cars/:id', carController.getCarById);
+
 module.exports = routers;
