@@ -8,6 +8,7 @@ import MyBooking from "../components/user/MyBooking";
 import BookingDetails from "../components/user/BookingDetails";
 import CarBooking from "../components/user/CarBooking";
 import EditBookingDetails from "../components/user/EditBookingDetails";
+import ModifyBooking from "../components/user/ModifyBooking";
 
 export default function Routers(){
     return <BrowserRouter>
@@ -20,6 +21,7 @@ export default function Routers(){
             <Route path="/bookingdetails" element={<BookingDetails/>}/>
             <Route path="/carbooking" element={<CarBooking/>}/>
             <Route path="/editbooking" element={<EditBookingDetails/>}/>
+            <Route path="modify" element={<ModifyBooking/>}/>
         </Routes>
     </BrowserRouter>
 }

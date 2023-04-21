@@ -1,16 +1,25 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import "../../styles/EditBookingDetails.css";
 import Header from "./Header";
 const EditBookingDetails = (editBookedcar) => {
-  // const navigate = useNavigate();
-  console.log(editBookedcar);
+  const navigate = useNavigate();
+  // console.log(editBookedcar)
   const currentDate = new Date().toLocaleDateString(); // get current date in format MM/DD/YYYY
   const currentTime = new Date().toLocaleTimeString();
+  const [mybook, setmybook] = useState(false);
+  const [destination, setdestination] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:4000/user/getbookingdetails")
+      .then((response) => response.json())
+      .then((destination) =>
+        setdestination(destination.data[destination.data.length - 1])
+      );
+  }, []);
   return (
     <>
-      <Header />
       <div className="EditBox flex">
         <div className="left-box Left-Edit-Section">
           <div>
@@ -25,13 +34,15 @@ const EditBookingDetails = (editBookedcar) => {
               </div>
 
               <div>
-                <h3>carname</h3>
+                <h3>
+                  {editBookedcar.editBookedcar.BookedCar.singlecar.carname}
+                </h3>
                 <p>MH 03 ZQ 1234</p>
               </div>
 
               <div className="mini-3rd-div-img">
                 <img
-                  src="https://images.pexels.com/photos/244206/pexels-photo-244206.jpeg?cs=srgb&dl=asphalt-auto-automobile-244206.jpg&fm=jpg"
+                  src={`http://localhost:4000/admin/${editBookedcar.editBookedcar.BookedCar.singlecar.image}`}
                   alt="photo"
                 />
               </div>
@@ -50,10 +61,11 @@ const EditBookingDetails = (editBookedcar) => {
               </div>
 
               <div>
-                <p>1</p>
-                <p>2</p>
-                <p>6</p>
-                <p>2</p>
+                {console.log(destination.origin)}
+                <p>{destination.origin}</p>
+                <p>{destination.destination}</p>
+                <p>{destination.startdate}</p>
+                <p>{destination.enddate}</p>
               </div>
 
               <div className="mini-3rd-div-img">
@@ -62,7 +74,7 @@ const EditBookingDetails = (editBookedcar) => {
                   allowfullscreen=""
                   loading="lazy"
                   referrerpolicy="no-referrer-when-downgrade"
-                />
+                ></iframe>
               </div>
             </div>
           </div>
@@ -75,12 +87,20 @@ const EditBookingDetails = (editBookedcar) => {
               <p>Booking Time</p>
             </div>
             <div>
-              <p>id </p>
-              <p>currentDate</p>
-              <p>currentTime</p>
+              <p>{editBookedcar.editBookedcar.BookedCar.singlecar.id} </p>
+              <p>{currentDate}</p>
+              <p>{currentTime}</p>
               <div>
-                <Button className="cancel-btn" variant="primary">
-                  Cancel
+                {" "}
+                <Button
+                  className="cancel-btn"
+                  variant="primary"
+                  onClick={() => {
+                    window.location.reload();
+                  }}
+                >
+                  {" "}
+                  Cancel{" "}
                 </Button>
               </div>
             </div>
@@ -97,26 +117,47 @@ const EditBookingDetails = (editBookedcar) => {
           <div>
             <div className="price">
               <p>Price per km</p>
-              <p>Rs perkm</p>
+              <p>Rs {editBookedcar.editBookedcar.BookedCar.singlecar.perkm}</p>
             </div>
 
             <div className="pricing">
               <p>Pricing</p>
-              <p>Rs 150</p>
+              <p>
+                Rs {editBookedcar.editBookedcar.BookedCar.singlecar.perkm * 150}
+              </p>
             </div>
 
             <div className="tax">
               <p>Tax Charges</p>
-              <p>Rs BookedCar</p>
+              <p>
+                Rs{" "}
+                {(editBookedcar.editBookedcar.BookedCar.singlecar.perkm *
+                  150 *
+                  18) /
+                  100}
+              </p>
             </div>
 
             <hr />
 
             <div className="tax">
               <p>Sub Total</p>
-              <p>Rs  150100</p>
+              <p>
+                Rs{" "}
+                {editBookedcar.editBookedcar.BookedCar.singlecar.perkm * 150 +
+                  (editBookedcar.editBookedcar.BookedCar.singlecar.perkm *
+                    150 *
+                    18) /
+                    100}
+              </p>
             </div>
-            <Button variant="primary" className="proceed-btn">
+            <Button
+              variant="primary"
+              className="proceed-btn"
+              onClick={() => {
+                setmybook(true);
+              }}
+            >
               Proceed
             </Button>
           </div>

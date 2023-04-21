@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../../styles/BookingPage.css";
 import { Button } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import axios from "axios";
 import BookingDetails from "./BookingDetails";
 import Header from "./Header";
@@ -10,46 +10,25 @@ const BookinPage = () => {
   const [destination, setdestination] = useState([]);
   const [data, setdata] = useState([]);
   const [cardetails, setcardetails] = useState(false);
-  // const [singlecar, setsingkecar] = useState({
-  //   carname: "",
-  //   image: "",
-  //   perkm: "",
-  //   id: "",
-  // });
+  const [singlecar, setsinglecar] = useState({
+    carname: "",
+    image: "",
+    perkm: "",
+    id: "",
+  });
   const [carType, setCarType] = useState(data);
   const BookingDetail = (Item) => {
-    // console.log(Item._id);
     const { carname, image, perkm, _id } = Item;
     console.log(Item);
-    // setsingkecar({
-    //   carname: carname,
-    //   image: image,
-    //   perkm: perkm,
-    //   id: _id,
-    // });
+    setsinglecar({
+      carname: carname,
+      image: image,
+      perkm: perkm,
+      id: _id,
+    });
 
     setcardetails(true);
   };
-  // console.log(singlecar);
-  // useEffect(() => {
-  //   Promise.all([
-  //     axios.get("http://localhost:4000/user/getcars"),
-  //     axios.get("http://localhost:4000/user/getbookingdetails"),
-  //   ])
-  //     .then(([adminData, bookingData]) => {
-  //       console.log(adminData.data);
-  //       setdata([adminData.data]);
-  //       // console.log([data]);
-  //       console.log(bookingData.data)
-  //       setdestination(
-  //         bookingData.data.users[bookingData.data.users.length - 1]
-  //       );
-  //       console.log(bookingData.data.users.length)
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }, []);
   useEffect(() => {
     fetch("http://localhost:4000/user/getcars")
       .then((response) => response.json())
@@ -59,8 +38,10 @@ const BookinPage = () => {
   useEffect(() => {
     fetch("http://localhost:4000/user/getbookingdetails")
       .then((response) => response.json())
-      .then((destination) => setdestination(destination.data));
-  }, []);
+      .then((destination) =>
+        setdestination(destination.data[destination.data.length - 1])
+      );
+  }, [data]);
   console.log(destination);
 
   const handleCarTypeChange = (event) => {
@@ -75,40 +56,21 @@ const BookinPage = () => {
       setdata(filteredCars);
     }
   }, [carType]);
-  // console.log(data)
+  console.log(data);
 
   return (
     <>
-      <div className="header">
-        <div className="logo">LOGO</div>
-        <div
-          className="bookings"
-          onClick={() => {
-            navigate("/bookingcar");
-          }}
-        >
-          My Booking
-        </div>
-        <div
-          className="logout"
-          onClick={() => {
-            navigate("/");
-          }}
-        >
-          Logout
-        </div>
-      </div>
+      <Header />
       {!cardetails && (
         <div>
           <div className="below-header">
-            {console.log(destination)}
             {destination.origin} ---&gt;{destination.destination} --&gt;{" "}
             {destination.startdate} - {destination.enddate}
             <Button
               variant="primary"
               className="modify-btn1"
               onClick={() => {
-                navigate("/bookingcar");
+                navigate("/modify");
               }}
             >
               Modify
@@ -139,9 +101,9 @@ const BookinPage = () => {
             <button className="setting">Other</button>
           </section>
 
-          <div className="card-container">
-            {data.map((item, index) => (
-              <div key={index} className="card">
+          <div className="card-container1">
+            {data.map((item) => (
+              <div key={item._id} className="card">
                 <img
                   src={`http://localhost:4000/admin/${item.image}`}
                   alt={item.carname}
@@ -156,7 +118,7 @@ const BookinPage = () => {
                 </div>
                 <div className="other flex flex-dir-r j-content">
                   <div className="fair-details">Details:{item.details}</div>
-                  <Button
+                 <Link to={`/mybookings${item._id}`}> <Button
                     variant="primary"
                     className="book-now"
                     onClick={() => {
@@ -164,14 +126,14 @@ const BookinPage = () => {
                     }}
                   >
                     Book Now
-                  </Button>
+                  </Button></Link>
                 </div>
               </div>
             ))}
           </div>
         </div>
       )}
-      {/* {cardetails && <BookingDetails singlecar={singlecar} />} */}
+      {cardetails && <BookingDetails singlecar={singlecar} />}
     </>
   );
 };
