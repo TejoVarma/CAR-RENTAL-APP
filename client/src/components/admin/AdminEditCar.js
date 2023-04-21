@@ -91,15 +91,15 @@ export default function AdminEditCar(){
     }
     return <div>
         <AdminHeader/>
-        <div className="add-car-body">
-            <div className="add-car-heading"><h2>Edit Car Details</h2></div>
-            <div className="form-container">
+        <div className="add-car-body-admin">
+            <div className="add-car-heading-admin"><h2>Edit Car Details</h2></div>
+            <div className="form-container-admin">
                 <form onSubmit={formValidation}>
-                    <div className="sections">
-                        <div className="left-section">
-                            <div className="field-container">
-                                <label className="labels" htmlFor="carname">Car Name</label>
-                                <input type={"text"} id="carname" name="carname" placeholder="Name of the car" value={formData.carname} maxLength = {15} required onChange={(e) => {
+                    <div className="sections-admin">
+                        <div className="left-section-admin">
+                            <div className="field-container-admin">
+                                <label className="labels" htmlFor="carname-admin">Car Name</label>
+                                <input type={"text"} id="carname-admin" name="carname" placeholder="Name of the car" value={formData.carname} maxLength = {15} required onChange={(e) => {
                                     setFormData(data => {
                                         return {
                                             ...data,
@@ -108,10 +108,10 @@ export default function AdminEditCar(){
                                     })
                                 }} />
                             </div>
-                            <div className="field-container flex">
-                                <div className="flex-boxes">
-                                    <label className="labels" htmlFor="type">Type</label>
-                                    <select name="type" id="type" required onChange={(e) => {
+                            <div className="field-container-admin flex-admin">
+                                <div className="flex-boxes-admin">
+                                    <label className="labels-admin" htmlFor="type-admin">Type</label>
+                                    <select name="type" id="type-admin" required onChange={(e) => {
                                     setFormData(data => {
                                         return {
                                             ...data,
@@ -124,9 +124,9 @@ export default function AdminEditCar(){
                                         <option value="ev">ev</option>
                                     </select>
                                 </div>
-                                <div className="flex-boxes">
-                                    <label className="labels" htmlFor="model">Model</label>
-                                    <select name="model" id="model" required onChange={(e) => {
+                                <div className="flex-boxes-admin">
+                                    <label className="labels-admin" htmlFor="model-admin">Model</label>
+                                    <select name="model" id="model-admin" required onChange={(e) => {
                                     setFormData(data => {
                                         return {
                                             ...data,
@@ -140,10 +140,10 @@ export default function AdminEditCar(){
                                     </select>
                                 </div>
                             </div>
-                            <div className="field-container flex">
-                                <div className="flex-boxes">
-                                    <label className="labels" htmlFor="carname">Mileage</label>
-                                    <input type={"number"} id="mileage" name="mileage" placeholder="KM/L" value={formData.mileage} required onChange={(e) => {
+                            <div className="field-container-admin flex-admin">
+                                <div className="flex-boxes-admin">
+                                    <label className="labels-admin" htmlFor="mileage-admin">Mileage</label>
+                                    <input type={"number"} id="mileage-admin" name="mileage" placeholder="KM/L" value={formData.mileage} required onChange={(e) => {
                                     setFormData(data => {
                                         return {
                                             ...data,
@@ -152,9 +152,9 @@ export default function AdminEditCar(){
                                     })
                                 }} />
                                 </div>
-                                <div className="flex-boxes">
-                                    <label className="labels" htmlFor="perkm">PerKm</label>
-                                    <input type={"number"} id="perkm" name="perkm" placeholder="0000" value={formData.perkm} required onChange={(e) => {
+                                <div className="flex-boxes-admin">
+                                    <label className="labels-admin" htmlFor="perkm-admin">PerKm</label>
+                                    <input type={"number"} id="perkm-admin" name="perkm" placeholder="0000" value={formData.perkm} required onChange={(e) => {
                                     setFormData(data => {
                                         return {
                                             ...data,
@@ -164,10 +164,10 @@ export default function AdminEditCar(){
                                 }} />
                                 </div>
                             </div>
-                            <div className="field-container flex">
-                                <div className="flex-boxes">
-                                    <label className="labels" htmlFor="availablefrom">Available From</label>
-                                    <input type={'date'} id="availablefrom" name="availablefrom" placeholder="DD MM YYYY" value={formData.availablefrom} onChange={(e) => {
+                            <div className="field-container-admin flex-admin">
+                                <div className="flex-boxes-admin">
+                                    <label className="labels-admin" htmlFor="availablefrom-admin">Available From</label>
+                                    <input type={'date'} id="availablefrom-admin" name="availablefrom" placeholder="DD MM YYYY" value={formData.availablefrom} onChange={(e) => {
                                     setFormData(data => {
                                         return {
                                             ...data,
@@ -176,9 +176,9 @@ export default function AdminEditCar(){
                                     })
                                 }} />
                                 </div>
-                                <div className="flex-boxes">
-                                    <label className="labels" htmlFor="availabletill">Available Till</label>
-                                    <input type={'date'} id="availabletill" name="availabletill" placeholder="DD MM YYYY" value={formData.availabletill} onChange={(e) => {
+                                <div className="flex-boxes-admin">
+                                    <label className="labels-admin" htmlFor="availabletill-admin">Available Till</label>
+                                    <input type={'date'} id="availabletill-admin" name="availabletill" placeholder="DD MM YYYY" value={formData.availabletill} onChange={(e) => {
                                     setFormData(data => {
                                         return {
                                             ...data,
@@ -188,9 +188,9 @@ export default function AdminEditCar(){
                                 }} />
                                 </div>
                             </div>
-                            <div className="field-container">
-                                <label className="labels" htmlFor="description">Description</label>
-                                <textarea rows="5" cols="60" name="description" id="description" placeholder="Description" value={formData.description} required onChange={(e) => {
+                            <div className="field-container-admin">
+                                <label className="labels-admin" htmlFor="description-admin">Description</label>
+                                <textarea rows="5" cols="60" name="description" id="description-admin" placeholder="Description" value={formData.description} required onChange={(e) => {
                                     setFormData(data => {
                                         return {
                                             ...data,
@@ -200,10 +200,10 @@ export default function AdminEditCar(){
                                 }} ></textarea>
                             </div>
                         </div>
-                        <div className="right-section">
-                            <div className="field-container">
-                                <label className="labels" htmlFor="file">Image</label>
-                                <input type={"file"} id="file" name="image" accept="image/*" onChange={(e) => {
+                        <div className="right-section-admin">
+                            <div className="field-container-admin">
+                                <label className="labels-admin" htmlFor="file-admin">Image</label>
+                                <input type={"file"} id="file-admin" name="image" accept="image/*" onChange={(e) => {
                                     addPreview(URL.createObjectURL(e.target.files[0]));
                                     setFormData(data => {
                                         return {
@@ -213,9 +213,9 @@ export default function AdminEditCar(){
                                     })
                                 }}/>
                             </div>
-                            <div className="field-container">
-                                <label className="labels" htmlFor="cardetails">Car Details</label>
-                                <textarea rows="5" cols="60" name="cardetails" id="cardetails" placeholder="Car Details" value={formData.cardetails}  onChange={(e) => {
+                            <div className="field-container-admin">
+                                <label className="labels-admin" htmlFor="cardetails-admin">Car Details</label>
+                                <textarea rows="5" cols="60" name="cardetails" id="cardetails-admin" placeholder="Car Details" value={formData.cardetails}  onChange={(e) => {
                                     setFormData(data => {
                                         return {
                                             ...data,
@@ -224,9 +224,9 @@ export default function AdminEditCar(){
                                     })
                                 }} ></textarea>
                             </div>
-                            <div className="field-container">
-                                <label className="labels" htmlFor="details">Details</label>
-                                <textarea rows="5" cols="60" name="details" id="details" placeholder="Details" value={formData.details} required onChange={(e) => {
+                            <div className="field-container-admin">
+                                <label className="labels-admin" htmlFor="details-admin">Details</label>
+                                <textarea rows="5" cols="60" name="details" id="details-admin" placeholder="Details" value={formData.details} required onChange={(e) => {
                                     setFormData(data => {
                                         return {
                                             ...data,
@@ -237,14 +237,14 @@ export default function AdminEditCar(){
                             </div>
                         </div>
                     </div>
-                    <div className="buttons-container">
-                        <div className="field-container flex-boxes">
-                            <button className="cancel-button" onClick={()=> navigate('/admin')}>Cancel</button>
+                    <div className="buttons-container-admin">
+                        <div className="field-container-admin flex-boxes-admin">
+                            <button className="cancel-button-admin" onClick={()=> navigate('/admin')}>Cancel</button>
                         </div>
-                        <div className="field-container flex-boxes post">
+                        <div className="field-container-admin flex-boxes-admin post-admin">
                             <div>
-                                <button className="submit-button delete" type={"submit"}>Delete</button>
-                                <button className="submit-button save" type={"submit"} onClick={()=>setEdit(true)}>Save</button>
+                                <button className="submit-button-admin delete-admin" type={"submit"}>Delete</button>
+                                <button className="submit-button-admin save-admin" type={"submit"} onClick={()=>setEdit(true)}>Save</button>
                             </div>
                         </div>
                     </div>
