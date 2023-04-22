@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, Outlet, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { deleteCar, editCar, getCarById } from "../../utils/adminData";
 import AdminHeader from "./AdminHeader";
 import ImagePreview from "./ImagePreview";
@@ -7,7 +7,7 @@ import { CarList } from "../../contexts/AdminContexts";
 
 export default function AdminEditCar(){
     const { id } = useParams();
-    const {addPreview} = useContext(CarList);
+    const {addPreview, preview} = useContext(CarList);
     const [edit,setEdit] = useState(false);
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
@@ -34,7 +34,8 @@ export default function AdminEditCar(){
                 availabletill: res.result.availabletill,
                 description: res.result.description,
                 cardetails: res.result.cardetails,
-                details: res.result.details
+                details: res.result.details,
+                image : res.result.image
             })
             // console.log(res.result);
         });
@@ -59,7 +60,8 @@ export default function AdminEditCar(){
                         availabletill: "",
                         description: "",
                         cardetails: "",
-                        details: ""
+                        details: "",
+                        image : ""
                     });
                     // setLoader(false);
                     navigate("/admin");
@@ -212,6 +214,14 @@ export default function AdminEditCar(){
                                         }
                                     })
                                 }}/>
+                            </div>
+                            <div id="preview-container">
+                                {preview ? 
+                                        <ImagePreview /> 
+                                            :  
+                                            <div id="preview-img-container-admin">
+                                                <img src={`http://localhost:4000/admin/${formData.image}`} alt="preview" />
+                                            </div>}
                             </div>
                             <div className="field-container-admin">
                                 <label className="labels-admin" htmlFor="cardetails-admin">Car Details</label>

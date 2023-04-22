@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import '../../styles/Admin.css';
 import AdminHeader from "./AdminHeader";
 import Cars from "./Cars";
 import { Link } from "react-router-dom";
@@ -14,7 +15,7 @@ export default function Admin(){
                 <div className="welcome-message-admin">
                     <h1>Hello Admin...</h1>
                 </div>
-                <div className="cars-container">
+                <div className="cars-container-admin">
                     <h3 className="cars-heading-admin">Cars</h3>
                     <div className="add-car-btn-admin">
                         <Link to={"addcar"}>

@@ -8,8 +8,6 @@ body{
     box-shadow: 0px 3px 6px #CBCBCB29;
     border: 1px solid #f0f0f0;
     opacity: 1;
-    padding: 1rem;
-    height: 3rem;
 }
 
 .logo-admin {
@@ -90,8 +88,12 @@ body{
 
 .image-container-admin {
     width: 371px;
+    height: 180px;
 }
-
+.footer-admin{
+    width: 371px;
+    height: 130px;
+}
 .image-admin {
     width: 371px;
     height: 180px;
@@ -239,4 +241,5 @@ body{
 }
 .delete-admin{
     margin-right: 10px;
+    background-color: red;
 }
