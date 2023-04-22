@@ -60,7 +60,8 @@ let email = req.body.email;
 
      const data = {
         user:{
-            id:userData.id
+            id:userData._id,
+            email : userData.email
         }
      }
      const authToken = jwt.sign(data,jwtSecret)

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { CarList } from "../../contexts/AdminContexts";
 import { addNewCar } from "../../utils/adminData";
 import AdminHeader from "./AdminHeader";
@@ -9,7 +9,7 @@ export default function AdminAddCar() {
     const navigate = useNavigate();
     const {addCar, addPreview, preview} = useContext(CarList);
 
-    const [loader, setLoader] = useState(false);
+    // const [loader, setLoader] = useState(false);
     const [formData, setFormData] = useState({
         carname: "",
         type: "",
@@ -25,7 +25,7 @@ export default function AdminAddCar() {
 
     function formValidation(e) {
         e.preventDefault();
-        setLoader(true);
+        // setLoader(true);
 
         const car = new FormData(e.target);
         addNewCar(car)
@@ -45,10 +45,10 @@ export default function AdminAddCar() {
                     cardetails: "",
                     details: ""
                 });
-                setLoader(false);
+                // setLoader(false);
                 navigate("/admin")
             } else {
-                setLoader(false);
+                // setLoader(false);
                 alert("Failed to add car, try again...")
             }
             

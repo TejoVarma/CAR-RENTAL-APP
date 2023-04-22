@@ -10,7 +10,7 @@ export default function AdminContext({children}) {
     useEffect(() => {
         getCars().then(res => {
             setCars(res.result.reverse());
-        });
+        }).catch(err=>alert("Unauthorized"));
         setPreview("")
         
     }, [])

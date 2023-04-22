@@ -49,6 +49,9 @@ const carDetailsSchema = Schema({
         type : String,
         required : true
     },
+    adminId : {
+        type : String
+    }
 });
 
 const carDetailsModel = new mongoose.model('CAR_DETAILS', carDetailsSchema);
