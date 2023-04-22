@@ -12,10 +12,12 @@ import {
 //   MDBCheckbox
 }
 from 'mdb-react-ui-kit';
+import { Link, useNavigate } from 'react-router-dom';
 
 function AdminLogin() {
     
     const [credentials, setCredentials] = useState({  email: '',  password: '' });
+    let navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,6 +35,11 @@ function AdminLogin() {
     if (!json.success) {
       alert('Enter Valid credentials');
     }
+
+    if (json.success) {
+      navigate("/admin")
+    }
+
   };
 
   const onChange = (e) => {
@@ -64,6 +71,15 @@ function AdminLogin() {
               
 
               <MDBBtn className='mb-4' size='lg' type='submit' onClick={handleSubmit}>Login</MDBBtn>
+
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Link to="/adminsignup" className='mb-4'>
+                  <MDBBtn className='mb-4 btn-danger' size='lg' type='submit' style={{ marginRight: '10px' }}>Admin Signup</MDBBtn>
+                </Link>
+                <Link to="/" className='mb-4'>
+                  <MDBBtn className='mb-4 btn-danger' size='lg' type='submit' style={{ marginLeft: '10px' }}>User Login</MDBBtn>
+                </Link>
+              </div>
             </MDBCol>
 
             <MDBCol md='10' lg='6' className='order-1 order-lg-2 d-flex align-items-center'>
