@@ -17,10 +17,10 @@ import UserLogin from "../components/login/UserLogin";
 export default function Routers(){
     return <BrowserRouter>
         <Routes>
-            <Route path ="/" element={<AdminLogin/>}/>
+            <Route path ="/adminlogin" element={<AdminLogin/>}/>
             <Route path ="/adminsignup" element={<AdminSignup/>}/>
             <Route path ="/usersignup" element={<UserSignup/>}/>
-            <Route path ="/userlogin" element={<UserLogin/>}/>
+            <Route path ="/" element={<UserLogin/>}/>
             <Route path ="/admin" element={<Admin/>}/>
             <Route path='/admin/addcar' element={<AdminAddCar/>}/>
             <Route path='/admin/edit/:id' element={<AdminEditCar/>}/>
