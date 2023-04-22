@@ -4,12 +4,13 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 // import "../../styles/EditBookingDetails.css";
 import Header from "./Header";
-const EditBookingDetails = (editBookedcar) => {
+const EditBookingDetails = () => {
   const navigate = useNavigate();
   // console.log(editBookedcar)
   const currentDate = new Date().toLocaleDateString(); // get current date in format MM/DD/YYYY
   const currentTime = new Date().toLocaleTimeString();
-  const [mybook, setmybook] = useState(false);
+  const [data,setdata]=useState([])
+  // const [mybook, setmybook] = useState(false);
   const [destination, setdestination] = useState([]);
   useEffect(() => {
     fetch("http://localhost:4000/user/getbookingdetails")
@@ -18,6 +19,12 @@ const EditBookingDetails = (editBookedcar) => {
         setdestination(destination.data[destination.data.length - 1])
       );
   }, []);
+  useEffect(() => {
+    fetch("http://localhost:4000/user/mybookings")
+      .then((response) => response.json())
+      .then((data) => setdata(data.data));
+  }, []);
+  console.log(data)
   return (
     <>
       <div className="EditBox flex">
@@ -35,16 +42,16 @@ const EditBookingDetails = (editBookedcar) => {
 
               <div>
                 <h3>
-                  {editBookedcar.editBookedcar.BookedCar.singlecar.carname}
+                  {data[0].carname}
                 </h3>
                 <p>MH 03 ZQ 1234</p>
               </div>
 
               <div className="mini-3rd-div-img">
-                <img
+                {/* <img
                   src={`http://localhost:4000/admin/${editBookedcar.editBookedcar.BookedCar.singlecar.image}`}
                   alt="photo"
-                />
+                /> */}
               </div>
             </div>
           </div>
@@ -61,7 +68,6 @@ const EditBookingDetails = (editBookedcar) => {
               </div>
 
               <div>
-                {console.log(destination.origin)}
                 <p>{destination.origin}</p>
                 <p>{destination.destination}</p>
                 <p>{destination.startdate}</p>
@@ -73,7 +79,7 @@ const EditBookingDetails = (editBookedcar) => {
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28788.78777019961!2d85.16637504100797!3d25.58502223107953!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ed5f5876b1ada3%3A0xc899c99a139e72e8!2sMahindra%20Kiran%20Automobiles!5e0!3m2!1sen!2sin!4v1679926472552!5m2!1sen!2sin"
                   allowfullscreen=""
                   loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"
+                  // referrerpolicy="no-referrer-when-downgrade"
                 ></iframe>
               </div>
             </div>
@@ -87,7 +93,7 @@ const EditBookingDetails = (editBookedcar) => {
               <p>Booking Time</p>
             </div>
             <div>
-              <p>{editBookedcar.editBookedcar.BookedCar.singlecar.id} </p>
+              {/* <p>{editBookedcar.editBookedcar.BookedCar.singlecar.id} </p> */}
               <p>{currentDate}</p>
               <p>{currentTime}</p>
               <div>
@@ -117,13 +123,13 @@ const EditBookingDetails = (editBookedcar) => {
           <div>
             <div className="price">
               <p>Price per km</p>
-              <p>Rs {editBookedcar.editBookedcar.BookedCar.singlecar.perkm}</p>
+              {/* <p>Rs {editBookedcar.editBookedcar.BookedCar.singlecar.perkm}</p> */}
             </div>
 
             <div className="pricing">
               <p>Pricing</p>
               <p>
-                Rs {editBookedcar.editBookedcar.BookedCar.singlecar.perkm * 150}
+                {/* Rs {editBookedcar.editBookedcar.BookedCar.singlecar.perkm * 150} */}
               </p>
             </div>
 
@@ -131,10 +137,10 @@ const EditBookingDetails = (editBookedcar) => {
               <p>Tax Charges</p>
               <p>
                 Rs{" "}
-                {(editBookedcar.editBookedcar.BookedCar.singlecar.perkm *
+                {/* {(editBookedcar.editBookedcar.BookedCar.singlecar.perkm *
                   150 *
                   18) /
-                  100}
+                  100} */}
               </p>
             </div>
 
@@ -143,20 +149,20 @@ const EditBookingDetails = (editBookedcar) => {
             <div className="tax">
               <p>Sub Total</p>
               <p>
-                Rs{" "}
-                {editBookedcar.editBookedcar.BookedCar.singlecar.perkm * 150 +
+                Rs
+                {/* {editBookedcar.editBookedcar.BookedCar.singlecar.perkm * 150 +
                   (editBookedcar.editBookedcar.BookedCar.singlecar.perkm *
                     150 *
                     18) /
-                    100}
+                    100} */}
               </p>
             </div>
             <Button
               variant="primary"
               className="proceed-btn"
-              onClick={() => {
-                setmybook(true);
-              }}
+              // onClick={() => {
+              //   setmybook(true);
+              // }}
             >
               Proceed
             </Button>

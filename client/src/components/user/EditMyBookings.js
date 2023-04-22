@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "../../styles/BookingPage.css";
 import { Button } from "react-bootstrap";
-import { useNavigate,Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import BookingDetails from "./BookingDetails";
 import Header from "./Header";
-const BookinPage = () => {
+const EditMyBookings = () => {
   const navigate = useNavigate();
   const [destination, setdestination] = useState([]);
   const [data, setdata] = useState([]);
@@ -53,7 +53,7 @@ const BookinPage = () => {
     } else {
       const filteredCars = data.filter((car) => car.model === carType);
       setdata(filteredCars);
-      console.log(data)
+      console.log(data);
     }
   }, [carType]);
   // console.log(data);
@@ -118,7 +118,7 @@ const BookinPage = () => {
                 </div>
                 <div className="other flex flex-dir-r j-content">
                   <div className="fair-details">Details:{item.details}</div>
-                <Button
+                  <Button
                     variant="primary"
                     className="book-now"
                     // onClick={()=>console.log(item._id)}
@@ -138,4 +138,4 @@ const BookinPage = () => {
     </>
   );
 };
-export default BookinPage;
+export default EditMyBookings;
