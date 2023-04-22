@@ -123,3 +123,4 @@ exports.getAllCars = async (req, res) => {
     });
   }
 };
+
