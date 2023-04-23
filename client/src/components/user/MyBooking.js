@@ -13,11 +13,11 @@ const MyBooking = () => {
   const currentDate = new Date().toLocaleDateString(); // get current date in format MM/DD/YYYY
   const currentTime = new Date().toLocaleTimeString();
   const [data, setdata] = useState([]);
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   useEffect(() => {
-    fetch("http://localhost:4000/user/mybookings",{
+    fetch("http://localhost:4000/user/mybookings", {
       headers: {
-        "authorization": JSON.parse(localStorage.getItem("userToken")),
+        authorization: JSON.parse(localStorage.getItem("userToken")),
       },
     })
       .then((response) => response.json())
@@ -91,11 +91,9 @@ const MyBooking = () => {
                 className="edit-btn"
                 onClick={() => {
                   // seteditpage(true);
-                  console.log(item._id)
-                  localStorage.setItem('key', JSON.stringify(item._id));
-                  navigate("/editbooking")
-                 
-
+                  console.log(item._id);
+                  localStorage.setItem("key", JSON.stringify(item._id));
+                  navigate("/editbooking");
                 }}
               >
                 Edit
@@ -103,20 +101,25 @@ const MyBooking = () => {
               <Button
                 variant="secondary"
                 className="canceled-btn1"
-                // onClick={() => {
-                //   window.location.reload();
-                //   console.log(item._id)
-                // }}
                 onClick={() => {
                   console.log(item._id);
                   fetch(`http://localhost:4000/user/mybookings/${item._id}`, {
                     method: "DELETE",
                     headers: {
-                      "authorization": JSON.parse(localStorage.getItem("userToken")),
+                      authorization: JSON.parse(
+                        localStorage.getItem("userToken")
+                      ),
                     },
                   })
                     .then((response) => {
                       if (response.ok) {
+                        fetch("http://localhost:4000/user/mybookings", {
+                          headers: {
+                            authorization: JSON.parse(localStorage.getItem("userToken")),
+                          },
+                        })
+                          .then((response) => response.json())
+                          .then((data) => setdata(data.data));
                         console.log("Data deleted successfully");
                       } else {
                         throw new Error("Error deleting data");
@@ -125,7 +128,6 @@ const MyBooking = () => {
                     .catch((error) => {
                       console.error("Error deleting data:", error);
                     });
-                    window.location.reload();
                 }}
               >
                 Cancel
