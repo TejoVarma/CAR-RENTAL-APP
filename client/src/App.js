@@ -1,4 +1,3 @@
-import './App.css';
 import Routers from './routes/Routers';
 import AdminContext from './contexts/AdminContexts';
 

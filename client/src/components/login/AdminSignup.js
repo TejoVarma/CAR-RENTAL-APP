@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   MDBBtn,
   MDBContainer,
@@ -16,7 +17,7 @@ from 'mdb-react-ui-kit';
 function AdminSignup() {
     
     const [credentials, setCredentials] = useState({ name: '', email: '', contact: '', password: '' });
-
+    const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await fetch('http://localhost:4000/api/createAdmin', {
@@ -33,8 +34,10 @@ function AdminSignup() {
     if (!json.success) {
       alert('Enter Valid credentials');
     }
-
-    
+    else
+    {
+      navigate('/adminlogin');
+    }  
   };
 
   const onChange = (e) => {

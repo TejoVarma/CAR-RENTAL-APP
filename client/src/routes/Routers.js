@@ -13,23 +13,33 @@ import AdminSignup from "../components/login/AdminSignup";
 import AdminLogin from "../components/login/AdminLogin";
 import UserSignup from "../components/login/UserSignup";
 import UserLogin from "../components/login/UserLogin";
+import PrivateComponentAdmin from "../components/PrivateComponentAdmin";
+import NotFound from "../components/NotFound";
+import PrivateComponent from "../components/PrivateComponentUser";
+import LandingPage from "../components/LandingPage";
 
 export default function Routers(){
     return <BrowserRouter>
         <Routes>
+            <Route element = {<PrivateComponentAdmin/>}>
+                <Route path ="/admin" element={<Admin/>}/>
+                <Route path='/admin/addcar' element={<AdminAddCar/>}/>
+                <Route path='/admin/edit/:id' element={<AdminEditCar/>}/>
+            </Route>
+            <Route element={<PrivateComponent/>}>
+            <Route path="/booking" element={<BookingPage/>}/>
+                <Route path="/mybookings" element={<MyBooking/>}/>
+                <Route path="/bookingdetails" element={<BookingDetails/>}/>
+                <Route path="/carbooking" element={<CarBooking/>}/>
+                <Route path="/editbooking" element={<EditBookingDetails/>}/>
+                <Route path="modify" element={<ModifyBooking/>}/>
+            </Route>
+            <Route path="/" element={<LandingPage/>}/>
             <Route path ="/adminlogin" element={<AdminLogin/>}/>
             <Route path ="/adminsignup" element={<AdminSignup/>}/>
             <Route path ="/usersignup" element={<UserSignup/>}/>
-            <Route path ="/" element={<UserLogin/>}/>
-            <Route path ="/admin" element={<Admin/>}/>
-            <Route path='/admin/addcar' element={<AdminAddCar/>}/>
-            <Route path='/admin/edit/:id' element={<AdminEditCar/>}/>
-            <Route path="/booking" element={<BookingPage/>}/>
-            <Route path="/mybookings" element={<MyBooking/>}/>
-            <Route path="/bookingdetails" element={<BookingDetails/>}/>
-            <Route path="/carbooking" element={<CarBooking/>}/>
-            <Route path="/editbooking" element={<EditBookingDetails/>}/>
-            <Route path="modify" element={<ModifyBooking/>}/>
+            <Route path ="/userlogin" element={<UserLogin/>}/>
+            <Route path ="*" element={<NotFound/>}/>
         </Routes>
     </BrowserRouter>
 }

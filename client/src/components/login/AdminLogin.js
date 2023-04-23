@@ -31,12 +31,12 @@ function AdminLogin() {
 
     const json = await response.json();
     console.log(json);
-
     if (!json.success) {
       alert('Enter Valid credentials');
     }
 
-    if (json.success) {
+    if (json.success && json.authToken) {
+      localStorage.setItem('adminToken', JSON.stringify(json.authToken));
       navigate("/admin")
     }
 

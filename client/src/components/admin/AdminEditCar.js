@@ -50,6 +50,7 @@ export default function AdminEditCar(){
             editCar(car, id)
             .then(res => {
                 if(res.status === "Success") {
+                    editCarContext();
                     setFormData({
                         carname: "",
                         type: "",
@@ -65,7 +66,7 @@ export default function AdminEditCar(){
                     });
                     // setLoader(false);
                     navigate("/admin");
-                    window.location.reload();
+                    // window.location.reload();
                 } else {
                     // setLoader(false);
                     alert("Failed to edit car, try again...")
@@ -79,9 +80,10 @@ export default function AdminEditCar(){
             .then(res => {
                 if(res.status === "Success")
                 {
+                    deleteCarContext();
                     setEdit(false);
                     navigate('/admin')
-                    window.location.reload();
+                    // window.location.reload();
                 }
                 else
                 {
@@ -100,7 +102,7 @@ export default function AdminEditCar(){
                     <div className="sections-admin">
                         <div className="left-section-admin">
                             <div className="field-container-admin">
-                                <label className="labels" htmlFor="carname-admin">Car Name</label>
+                                <label className="labels-admin" htmlFor="carname-admin">Car Name</label>
                                 <input type={"text"} id="carname-admin" name="carname" placeholder="Name of the car" value={formData.carname} maxLength = {15} required onChange={(e) => {
                                     setFormData(data => {
                                         return {

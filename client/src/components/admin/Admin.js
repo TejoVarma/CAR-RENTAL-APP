@@ -16,11 +16,15 @@ export default function Admin(){
                     <h1>Hello Admin...</h1>
                 </div>
                 <div className="cars-container-admin">
-                    <h3 className="cars-heading-admin">Cars</h3>
-                    <div className="add-car-btn-admin">
-                        <Link to={"addcar"}>
-                            <button className="addCar-admin">Add Car</button>
-                        </Link>
+                    <div className="car-heading-and-add-container-admin">
+                        <div className="cars-heading-container-admin">
+                            <h3 className="cars-heading-admin">Cars</h3>
+                        </div>
+                        <div className="add-car-btn-admin">
+                            <Link to={"addcar"}>
+                                <button className="addCar-admin">Add Car</button>
+                            </Link>
+                        </div>
                     </div>
                     <div className="car-cards-container-admin">
                         {
