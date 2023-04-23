@@ -14,36 +14,36 @@ function ModifyBooking() {
   });
   const [data, setData] = useState({});
 
-  const HandleChange = (e) => {
-    const { name, value } = e.target;
-    setFormdata({
-      ...formdata,
-      [name]: value,
-    });
-  };
+  // const HandleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setFormdata({
+  //     ...formdata,
+  //     [name]: value,
+  //   });
+  // };
   useEffect(() => {
-    fetch("http://localhost:4000/user/getbookingdetails")
+    fetch("http://localhost:4000/user/getbookingdetails", {
+      headers: {
+        authorization: JSON.parse(localStorage.getItem("userToken")),
+      },
+    })
       .then((response) => response.json())
       .then((data) => setData(data.data[data.data.length - 1]))
       .catch((error) => console.error(error));
   }, []);
   //   console.log(data.data[data.data.length-1])
   console.log(data);
-  // useEffect(() => {
-  //     fetch("http://localhost:4000/user/getbookingdetails")
-  //       .then((response) => response.json())
-  //       .then((destination) =>
-  //         setdestination(destination.data[destination.data.length - 1])
-  //       );
-  //   }, []);
-  //   console.log(destination._id)
 
   const submitData = () => {
     console.log(data);
     const id = data._id;
     console.log(id);
     axios
-      .put(`http://localhost:4000/user/updatebooking/${id}`, data)
+      .put(`http://localhost:4000/user/updatebooking/${id}`, data, {
+        headers: {
+          authorization: JSON.parse(localStorage.getItem("userToken")),
+        },
+      })
       .then((res) => {
         console.log(res);
       })

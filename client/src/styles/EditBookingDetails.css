@@ -17,8 +17,30 @@
   position: relative;
   top: 20px;
 }
+#edit-details-1{
+  display: flex;
+  flex-direction: column;
+  gap:8.5px;
+
+
+}
+
 
 .edit2-title2 {
   position: relative;
   top: 16px;
+}
+.cars-1 {
+  text-align: left;
+  font: normal normal medium 32px/39px Helvetica Neue;
+  letter-spacing: 2.56px;
+  color: #1d1d1d;
+  opacity: 0.5;
+}
+.cars-1>#car-num{
+position:absolute;  
+top:245px;
+left: 364px;
+width: 252px;
+height: 38px;
 }
