@@ -36,7 +36,7 @@ function AdminLogin() {
     }
 
     if (json.success && json.authToken) {
-      //tejo
+      
       localStorage.setItem('adminToken', JSON.stringify(json.authToken));
       navigate("/admin")
     }
