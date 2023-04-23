@@ -4,22 +4,38 @@ body{
 }
 .header-admin {
     display: flex;
-    background: #FFFFFF 0% 0% no-repeat padding-box;
+    background-color: black;
     box-shadow: 0px 3px 6px #CBCBCB29;
     border: 1px solid #f0f0f0;
     opacity: 1;
 }
 
 .logo-admin {
-    color: #007FED;
     width: 50%;
     margin: 10px;
-    padding-left: 2rem;
     letter-spacing: 2.4px;
     font-size: 24px;
     font-weight: bold;
 }
 
+.logo-admin-pic{
+    width: 70px;
+    margin-left: 20px;
+    border-radius: 35px;
+    display: inline-block;
+}
+.logo-admin-pic:hover{
+    cursor: pointer;
+}
+.company-admin{
+    display: inline-block;
+    vertical-align:auto;
+    margin-left: 20px;
+    color: white;
+}
+.company-admin:hover{
+    cursor: pointer;
+}
 .logout-container-admin {
     width: 50%;
     font: normal normal medium 20px/25px Helvetica Neue;
@@ -33,7 +49,8 @@ body{
 }
 .logout-text-container-admin>p{
     width: 71px;
-    margin : 10px;
+    margin : 25px;
+    color: white;
 }
 .logout-text-container-admin>p:hover {
     cursor: pointer;
@@ -51,14 +68,16 @@ body{
     margin-left: 10px;
 }
 
-.cars-heading-admin {
-    margin-right: 50%;
-    margin-left: 10px;
-    font-size: 20px;
+.car-heading-and-add-container-admin{
+    display: flex;
+    margin : 20px;
 }
-
-.add-car-btn-admin {
-    margin-left: 37%;
+.cars-heading-container-admin{
+    width: 50%;
+}
+.add-car-btn-admin{
+    width: 50%;
+    margin-left: 700px;
 }
 
 .addCar-admin {
@@ -68,7 +87,12 @@ body{
     font-size: 18px;
     color: white;
     border-radius: 8px;
+    transition: 1s;
     border: none;
+}
+.addCar-admin:hover{
+    width: 150px;
+    cursor: pointer;
 }
 
 .cars-heading-admin,
@@ -85,7 +109,11 @@ body{
     border-radius: 10px;
     box-shadow: 0 5px 5px 1px grey;
 }
-
+.add-car-heading-admin{
+    margin-left: 100px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 .image-container-admin {
     width: 371px;
     height: 180px;
@@ -154,9 +182,7 @@ body{
     grid-template-columns: repeat(4, 1fr);
     gap: 15px;
 }
-.add-car-heading-admin{
-    margin-left: 100px;
-}
+
 .field-container-admin{
     margin : 30px;
 }
@@ -225,7 +251,11 @@ body{
     font-size: 20px;
     border: 1px solid #007FED;
     color: #007FED;
+    transition: 1s;
     border-radius: 25px;
+}
+.cancel-button-admin:hover{
+    width: 250px;
 }
 .post-admin{
     text-align: center;
@@ -237,7 +267,11 @@ body{
     border: none;
     background-color: #007FED;
     font-size: 20px;
+    transition: 1s;
     color: white;
+}
+.submit-button-admin:hover{
+    width: 250px;
 }
 .delete-admin{
     margin-right: 10px;
