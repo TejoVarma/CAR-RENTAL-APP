@@ -31,7 +31,7 @@ const BookinPage = () => {
     setcardetails(true);
   };
   useEffect(() => {
-    fetch("http://localhost:4000/user/getcars",{
+    fetch("https://miles-node-ptu.onrender.com/user/getcars",{
       headers: {
         "authorization": JSON.parse(localStorage.getItem("userToken")),
       },
@@ -41,7 +41,7 @@ const BookinPage = () => {
   }, []);
   // console.log(data);
   useEffect(() => {
-  fetch("http://localhost:4000/user/getbookingdetails",{
+  fetch("https://miles-node-ptu.onrender.com/user/getbookingdetails",{
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -116,7 +116,7 @@ const BookinPage = () => {
             {data.map((item) => (
               <div key={item._id} className="card">
                 <img
-                  src={`http://localhost:4000/admin/${item.image}`}
+                  src={`https://miles-node-ptu.onrender.com/admin/${item.image}`}
                   alt={item.carname}
                   onClick={() => {
                     console.log("hello");

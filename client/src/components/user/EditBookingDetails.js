@@ -15,7 +15,7 @@ const EditBookingDetails = () => {
   const id = JSON.parse(localStorage.getItem("key"));
   const [selectedCar, setSelectedCar] = useState("");
   useEffect(() => {
-    fetch("http://localhost:4000/user/getbookingdetails",{
+    fetch("https://miles-node-ptu.onrender.com/user/getbookingdetails",{
       headers: {
         "authorization": JSON.parse(localStorage.getItem("userToken")),
       },
@@ -26,7 +26,7 @@ const EditBookingDetails = () => {
       );
   }, []);
   useEffect(() => {
-    fetch(`http://localhost:4000/user/get/${id}`, {
+    fetch(`https://miles-node-ptu.onrender.com/user/get/${id}`, {
       headers: {
         authorization: JSON.parse(localStorage.getItem("userToken")),
       },
@@ -36,7 +36,7 @@ const EditBookingDetails = () => {
   }, []);
   console.log(id, details);
   useEffect(() => {
-    fetch("http://localhost:4000/user/getcars", {
+    fetch("https://miles-node-ptu.onrender.com/user/getcars", {
       headers: {
         authorization: JSON.parse(localStorage.getItem("userToken")),
       },
@@ -85,7 +85,7 @@ const EditBookingDetails = () => {
 
               <div className="mini-3rd-div-img">
                 <img
-                  src={`http://localhost:4000/admin/${details.image}`}
+                  src={`https://miles-node-ptu.onrender.com/admin/${details.image}`}
                   alt="photo"
                 />
               </div>
@@ -212,7 +212,7 @@ const EditBookingDetails = () => {
               variant="primary"
               className="proceed-btn"
               onClick={() => {
-                fetch(`http://localhost:4000/user/update/${id}`, {
+                fetch(`https://miles-node-ptu.onrender.com/user/update/${id}`, {
                   method: "PATCH",
                   headers: {
                     "Content-Type": "application/json",

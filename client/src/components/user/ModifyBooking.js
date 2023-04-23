@@ -22,7 +22,7 @@ function ModifyBooking() {
   //   });
   // };
   useEffect(() => {
-    fetch("http://localhost:4000/user/getbookingdetails", {
+    fetch("https://miles-node-ptu.onrender.com/user/getbookingdetails", {
       headers: {
         authorization: JSON.parse(localStorage.getItem("userToken")),
       },
@@ -39,7 +39,7 @@ function ModifyBooking() {
     const id = data._id;
     console.log(id);
     axios
-      .put(`http://localhost:4000/user/updatebooking/${id}`, data, {
+      .put(`https://miles-node-ptu.onrender.com/user/updatebooking/${id}`, data, {
         headers: {
           authorization: JSON.parse(localStorage.getItem("userToken")),
         },
