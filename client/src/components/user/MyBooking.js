@@ -15,7 +15,7 @@ const MyBooking = () => {
   const [data, setdata] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
-    fetch("http://localhost:4000/user/mybookings", {
+    fetch("https://miles-node-ptu.onrender.com/user/mybookings", {
       headers: {
         authorization: JSON.parse(localStorage.getItem("userToken")),
       },
@@ -37,7 +37,7 @@ const MyBooking = () => {
           <div className="div-1" key={item._id}>
             <div className="one-div">
               <img
-                src={`http://localhost:4000/admin/${item.image}`}
+                src={`https://miles-node-ptu.onrender.com/admin/${item.image}`}
                 alt="photo"
               />
             </div>
@@ -103,7 +103,7 @@ const MyBooking = () => {
                 className="canceled-btn1"
                 onClick={() => {
                   console.log(item._id);
-                  fetch(`http://localhost:4000/user/mybookings/${item._id}`, {
+                  fetch(`https://miles-node-ptu.onrender.com/user/mybookings/${item._id}`, {
                     method: "DELETE",
                     headers: {
                       authorization: JSON.parse(
@@ -113,7 +113,7 @@ const MyBooking = () => {
                   })
                     .then((response) => {
                       if (response.ok) {
-                        fetch("http://localhost:4000/user/mybookings", {
+                        fetch("https://miles-node-ptu.onrender.com/user/mybookings", {
                           headers: {
                             authorization: JSON.parse(localStorage.getItem("userToken")),
                           },

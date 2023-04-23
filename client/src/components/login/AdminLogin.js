@@ -23,7 +23,7 @@ function AdminLogin() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch('http://localhost:4000/api/loginAdmin', {
+    const response = await fetch('https://miles-node-ptu.onrender.com/api/loginAdmin', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

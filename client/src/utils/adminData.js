@@ -1,4 +1,4 @@
-const URL = "http://localhost:4000";
+const URL = "https://miles-node-ptu.onrender.com";
 
 export async function getCars(){
     return await fetch(`${URL}/admin/cars`,{

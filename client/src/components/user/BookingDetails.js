@@ -12,7 +12,7 @@ const BookingDetails = (singlecar) => {
   const currentTime = new Date().toLocaleTimeString();
   const [destination, setdestination] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:4000/user/getbookingdetails",{
+    fetch("https://miles-node-ptu.onrender.com/user/getbookingdetails",{
       headers: {
         "authorization": JSON.parse(localStorage.getItem("userToken")),
       },
@@ -32,7 +32,7 @@ const BookingDetails = (singlecar) => {
       enddate: destination.enddate,
     };
     // console.log(data)
-    fetch("http://localhost:4000/user/mybookings", {
+    fetch("https://miles-node-ptu.onrender.com/user/mybookings", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -1,4 +1,4 @@
-const url = "http://localhost:4000";
+const url = "https://miles-node-ptu.onrender.com";
 export const getmybooking = () => {
   return fetch(`${url}/user/getcars`, {
     headers: {

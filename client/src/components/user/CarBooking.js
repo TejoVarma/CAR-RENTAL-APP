@@ -21,7 +21,7 @@ function CarBooking() {
   }
 
   const handleClick = () => {
-    fetch("http://localhost:4000/user/bookingdetails", {
+    fetch("https://miles-node-ptu.onrender.com/user/bookingdetails", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

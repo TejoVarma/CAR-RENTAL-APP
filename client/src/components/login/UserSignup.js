@@ -13,14 +13,15 @@ import {
   //   MDBCheckbox
 }
 from 'mdb-react-ui-kit';
+import { useNavigate } from 'react-router-dom';
 
 function UserSignup() {
     
     const [credentials, setCredentials] = useState({ name: '', email: '', contact: '', password: '' });
-
+    const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch('http://localhost:4000/api/createUser', {
+    const response = await fetch('https://miles-node-ptu.onrender.com/api/createUser', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

@@ -222,7 +222,7 @@ export default function AdminEditCar(){
                                         <ImagePreview /> 
                                             :  
                                             <div id="preview-img-container-admin">
-                                                <img src={`http://localhost:4000/admin/${formData.image}`} alt="preview" />
+                                                <img src={`https://miles-node-ptu.onrender.com/admin/${formData.image}`} alt="preview" />
                                             </div>}
                             </div>
                             <div className="field-container-admin">
