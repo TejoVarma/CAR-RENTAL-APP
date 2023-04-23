@@ -7,7 +7,7 @@ import { CarList } from "../../contexts/AdminContexts";
 
 export default function AdminEditCar(){
     const { id } = useParams();
-    const {addPreview, preview} = useContext(CarList);
+    const {addPreview, preview,editCarContext,deleteCarContext} = useContext(CarList);
     const [edit,setEdit] = useState(false);
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
