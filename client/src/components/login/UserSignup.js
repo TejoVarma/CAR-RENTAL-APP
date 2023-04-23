@@ -12,11 +12,11 @@ import {
   MDBIcon,
   //   MDBCheckbox
 }
-  from 'mdb-react-ui-kit';
+from 'mdb-react-ui-kit';
 
 function UserSignup() {
-
-  const [credentials, setCredentials] = useState({ name: '', email: '', contact: '', password: '' });
+    
+    const [credentials, setCredentials] = useState({ name: '', email: '', contact: '', password: '' });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,6 +33,10 @@ function UserSignup() {
 
     if (!json.success) {
       alert('Enter Valid credentials');
+    }
+
+    if (json.success) {
+      navigate("/userlogin")
     }
   };
 
@@ -72,8 +76,8 @@ function UserSignup() {
 
 
 
-                <MDBBtn className='mb-4' size='lg' type='submit' onClick={handleSubmit}>Register</MDBBtn>
-              </MDBCol>
+              <MDBBtn className='mb-4' size='lg' type='submit' onClick={handleSubmit}>Register</MDBBtn>
+            </MDBCol>
 
               <MDBCol md='10' lg='6' className='order-1 order-lg-2 d-flex align-items-center'>
                 <MDBCardImage src='https://images.unsplash.com/photo-1621993202323-f438eec934ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80' fluid />

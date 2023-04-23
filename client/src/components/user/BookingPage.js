@@ -9,6 +9,7 @@ const BookinPage = () => {
   const navigate = useNavigate();
   const [destination, setdestination] = useState([]);
   const [data, setdata] = useState([]);
+  const [type,setType]=useState(false)
   const [cardetails, setcardetails] = useState(false);
   const [singlecar, setsinglecar] = useState({
     carname: "",
@@ -30,13 +31,23 @@ const BookinPage = () => {
     setcardetails(true);
   };
   useEffect(() => {
-    fetch("http://localhost:4000/user/getcars")
+    fetch("http://localhost:4000/user/getcars",{
+      headers: {
+        "authorization": JSON.parse(localStorage.getItem("userToken")),
+      },
+    })
       .then((response) => response.json())
       .then((data) => setdata(data.data));
   }, []);
   // console.log(data);
   useEffect(() => {
-    fetch("http://localhost:4000/user/getbookingdetails")
+  fetch("http://localhost:4000/user/getbookingdetails",{
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "authorization": JSON.parse(localStorage.getItem("userToken"))
+    },
+  })
       .then((response) => response.json())
       .then((destination) =>
         setdestination(destination.data[destination.data.length - 1])
@@ -45,6 +56,7 @@ const BookinPage = () => {
   console.log(destination);
 
   const handleCarTypeChange = (event) => {
+    setType(true)
     setCarType(event.target.value); // Update state with selected carType value
   };
   useEffect(() => {
@@ -53,9 +65,8 @@ const BookinPage = () => {
     } else {
       const filteredCars = data.filter((car) => car.model === carType);
       setdata(filteredCars);
-      console.log(data)
     }
-  }, [carType]);
+  }, [type]);
   // console.log(data);
 
   return (
@@ -85,7 +96,7 @@ const BookinPage = () => {
               >
                 <option value="all">All</option>
                 <option value="xuv">XUV</option>
-                <option value="suv">MV</option>
+                <option value="suv">SUV</option>
                 <option value="sedan">SEDAN</option>
               </select>
             </section>

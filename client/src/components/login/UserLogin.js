@@ -38,7 +38,8 @@ function UserLogin() {
     }
 
     if (json.success) {
-      navigate("/carbooking");
+      localStorage.setItem('userToken',JSON.stringify(json.authToken))
+      navigate("/carbooking")
     }
 
   };
