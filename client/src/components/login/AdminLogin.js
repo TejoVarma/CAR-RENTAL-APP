@@ -40,7 +40,8 @@ function AdminLogin() {
     if (json.success && json.authToken) {
       
       localStorage.setItem('adminToken', JSON.stringify(json.authToken));
-      navigate("/admin")
+      navigate("/admin");
+      window.location.reload();
     }
 
   };
