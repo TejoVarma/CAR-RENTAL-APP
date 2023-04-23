@@ -12,10 +12,12 @@ import {
 //   MDBCheckbox
 }
 from 'mdb-react-ui-kit';
+import { Link,useNavigate } from 'react-router-dom';
 
 function UserSignup() {
     
     const [credentials, setCredentials] = useState({ name: '', email: '', contact: '', password: '' });
+    const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,6 +34,10 @@ function UserSignup() {
 
     if (!json.success) {
       alert('Enter Valid credentials');
+    }
+
+    if (json.success) {
+      navigate("/userlogin")
     }
   };
 
@@ -70,7 +76,14 @@ function UserSignup() {
               
 
               <MDBBtn className='mb-4' size='lg' type='submit' onClick={handleSubmit}>Register</MDBBtn>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Link to="/userlogin" className='mb-4'>
+                  <MDBBtn className='mb-4 btn-danger' size='lg' type='submit' style={{ marginRight: '10px' }}>Already a User</MDBBtn>
+                </Link>
+              </div>
             </MDBCol>
+
+            
 
             <MDBCol md='10' lg='6' className='order-1 order-lg-2 d-flex align-items-center'>
               <MDBCardImage src='https://images.unsplash.com/photo-1621993202323-f438eec934ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80' fluid />
