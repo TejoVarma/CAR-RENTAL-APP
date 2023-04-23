@@ -8,12 +8,12 @@
 }
 
 .div-1 {
-  max-width: 1250px;
+  max-width: 1350px;
   height: 180px;
   border: 1px solid black;
   margin-top: 30px;
   display: flex;
-  margin-left: 30px;
+  margin-left: 50px;
 }
 
 .one-div {
@@ -69,26 +69,41 @@
   height: 180px;
   display: flex;
   flex-direction: column;
-  /* padding: 5px 5px; */
   position: absolute;
   left: 1190px;
 }
 .edit-btn {
-  position: relative;
+  /* position: relative;
   top: 100px;
   left: 18px;
   padding: 10px;
   width: 60px;;
-  cursor: pointer;
+  cursor: pointer; */
+  position: absolute;
+  top: 90px;
+  left:50px;
+  width:100px;
+  height: 47px;
+  border: 1px solid #007fed;
+  border-radius: 34px;
+  opacity: 1;
 }
 
 .canceled-btn1 {
-  position: relative;
+  /* position: relative;
   top: 130px;
   left: 18px;
   width: 60px;
   cursor: pointer;
-  height: 45px;
+  height: 45px; */
+  position: absolute;
+  top: 160px;
+  left:50px;
+  width: 100px;
+  height: 47px;
+  border: 1px solid #007fed;
+  border-radius: 34px;
+  opacity: 1;
 }
 
 .div-2 {
@@ -122,9 +137,7 @@ h5 {
   bottom: 75px;
   left: -15px;
 }
-iframe{
-  height:160px;
-  width: 160px;;
+iframe {
+  height: 160px;
+  width: 160px;
 }
-
-

@@ -5,39 +5,23 @@ import MyBooking from "./MyBooking";
 import axios from "axios";
 import Header from "./Header";
 import { useNavigate } from "react-router-dom";
-
 const BookingDetails = (singlecar) => {
   const navigate = useNavigate();
   // const [mybook, setmybook] = useState(false);
   const currentDate = new Date().toLocaleDateString(); // get current date in format MM/DD/YYYY
   const currentTime = new Date().toLocaleTimeString();
   const [destination, setdestination] = useState([]);
-  const [lang,setLang]=useState([]);
-  const [lat,setLat]=useState([])
-  // useEffect(() => {
-  //   axios
-  //     .get("http://localhost:4000/user/getbookingdetails")
-  //     .then((resp) => {
-  //       setdestination(resp.data.users[resp.data.users.length - 1]);
-  //     })
-  //     .catch((error) => {
-  //       console.log("showing error", error);
-  //     });
-  // }, [destination.length]);
- 
   useEffect(() => {
-    fetch("http://localhost:4000/user/getbookingdetails")
+    fetch("http://localhost:4000/user/getbookingdetails",{
+      headers: {
+        "authorization": JSON.parse(localStorage.getItem("userToken")),
+      },
+    })
       .then((response) => response.json())
       .then((destination) =>
         setdestination(destination.data[destination.data.length - 1])
       );
   }, []);
-  useEffect(()=>{
-    fetch(`https://nominatim.openstreetmap.org/search?q=hyderabad&format=json&limit=1&addressdetails=1`)
-    .then((response)=>response.json())
-    .then((lang)=>setLang(lang[0].lon))
-  },[])
-  console.log(lang);
   const handleClick = () => {
     const data = {
       origin: destination.origin,
@@ -52,6 +36,7 @@ const BookingDetails = (singlecar) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        'authorization': JSON.parse(localStorage.getItem("userToken")),
       },
       body: JSON.stringify(data),
     })
@@ -121,7 +106,6 @@ const BookingDetails = (singlecar) => {
                   src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d973521.5531922826!2d73.48046505385568!3d17.6113483639419!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x3bc100404d639073%3A0xc0e2f0fe65fa2b25!2sKolhapur%20Bus%20Stand%20(CBS)%2C%20Benadikar%20Path%2C%20Shahupuri%2C%20Kolhapur%2C%20Maharashtra%20416001!3m2!1d16.7034517!2d74.24323319999999!4m5!1s0x3bc2bf2e67461101%3A0x828d43bf9d9ee343!2sPune%2C%20Maharashtra!3m2!1d18.520430299999997!2d73.8567437!5e0!3m2!1sen!2sin!4v1680106081224!5m2!1sen!2sin"
                   allowfullscreen=""
                   loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"
                 ></iframe>
               </div>
             </div>
