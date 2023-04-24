@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../../styles/BookingPage.css";
 import { Button } from "react-bootstrap";
-import { useNavigate, Link } from "react-router-dom";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import BookingDetails from "./BookingDetails";
 import Header from "./Header";
 const BookinPage = () => {

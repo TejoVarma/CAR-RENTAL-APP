@@ -39,7 +39,7 @@ export default function AdminEditCar(){
             })
             // console.log(res.result);
         });
-    },[]);
+    });
     // console.log(car);
     function formValidation(e) {
         e.preventDefault();
