@@ -7,7 +7,6 @@ import Header from "./Header";
 import MapComponent from "./MapComponent";
 const EditBookingDetails = () => {
   const navigate = useNavigate();
-  // console.log(editBookedcar)
   const currentDate = new Date().toLocaleDateString(); // get current date in format MM/DD/YYYY
   const currentTime = new Date().toLocaleTimeString();
   const [carNames, setCarNames] = useState([]);
@@ -35,7 +34,7 @@ const EditBookingDetails = () => {
       .then((response) => response.json())
       .then((details) => setDetails(details.data));
   }, []);
-  console.log(id, details);
+
   useEffect(() => {
     fetch("https://miles-node-ptu.onrender.com/user/getcars", {
       headers: {
@@ -45,11 +44,11 @@ const EditBookingDetails = () => {
       .then((response) => response.json())
       .then((carNames) => setCarNames(carNames.data));
   }, []);
-  console.log(details.carname);
+
   const handleCarChange = (event) => {
     setSelectedCar(event.target.value);
   };
-  console.log(selectedCar);
+  
 
   return (
     <>
@@ -206,27 +205,19 @@ const EditBookingDetails = () => {
                   method: "PATCH",
                   headers: {
                     "Content-Type": "application/json",
-                    "authorization": JSON.parse(
+                    authorization: JSON.parse(
                       localStorage.getItem("userToken")
                     ),
                   },
-                  body: JSON.stringify({ ...details, carname: selectedCar }),
+                  body: JSON.stringify({
+                    ...details,
+                    carname: details.carname,
+                  }),
                 })
-                  .then((response) => {
-                    if (response.ok) {
-                      return response.json();
-                    }
-                    throw new Error("Network response was not ok.");
-                  })
-                  .then((data) => {
-                    console.log("Updated user:", data);
-                  })
-                  .catch((error) => {
-                    console.error("Error updating user:", error);
-                  });
-
-                navigate("/mybookings");
-                console.log(id);
+                  .then((response) => response.json())
+                  .then((data) => console.log(data))
+                  .catch((error) => console.error(error));
+                  navigate("/mybookings")
               }}
             >
               Proceed
