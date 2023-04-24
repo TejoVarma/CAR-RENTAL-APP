@@ -32,12 +32,12 @@ const BookingDetails = (singlecar) => {
       startdate: destination.startdate,
       enddate: destination.enddate,
     };
-    // console.log(data)
+  
     fetch("https://miles-node-ptu.onrender.com/user/mybookings", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        authorization: JSON.parse(localStorage.getItem("userToken")),
+        "authorization": JSON.parse(localStorage.getItem("userToken")),
       },
       body: JSON.stringify(data),
     })

@@ -45,7 +45,7 @@ exports.postbookings = async (req, res) => {
         destination,
         carname,
         image,
-        userId:newUser._id
+        userId: newUser._id,
       });
 
       await user.save();
@@ -67,15 +67,15 @@ exports.postbookings = async (req, res) => {
   }
 };
 exports.updatemybooking = async (req, res) => {
-  console.log(req)
+  console.log(req);
   try {
     let token = await getToken(req.headers);
     let payload = await jwt.verify(token, process.env.SECRET);
-    // console.log(payload);
+    console.log(payload);
     let newUser = await User.findById(payload.user.id);
     if (token && newUser) {
     const { id } = req.params;
-    const { carname,startdate, enddate, origin, destination } = req.body;
+    const { carname, startdate, enddate, origin, destination } = req.body;
     // if (!startdate || !enddate || !origin || !destination||!carname) {
     //   return res.status(401).send({
     //     success: false,
@@ -84,7 +84,7 @@ exports.updatemybooking = async (req, res) => {
     // }
     const updatedDetails = await myBookings.findByIdAndUpdate(
       id,
-      { carname,startdate, enddate, origin, destination },
+      { carname, startdate, enddate, origin, destination },
       { new: true }
     );
     if (!updatedDetails) {
@@ -98,9 +98,9 @@ exports.updatemybooking = async (req, res) => {
       message: "Booking Details Updated Succesfully",
       details: updatedDetails,
     });
-  } else {
-    res.status(403).json({ status: "Failed", result: "Unauthorized" });
-  }
+    } else {
+      res.status(403).json({ status: "Failed", result: "Unauthorized" });
+    }
   } catch (err) {
     console.log(err);
     return res.status(500).send({
@@ -133,7 +133,7 @@ exports.deletemybooking = async (req, res) => {
     } else {
       res.status(403).json({ status: "Failed", result: "Unauthorized" });
     }
-  } catch(err) {
+  } catch (err) {
     console.log(err);
     return res.status(500).send({
       success: false,
