@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../../styles/BookingPage.css";
 import { Button } from "react-bootstrap";
-import { useNavigate,Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import BookingDetails from "./BookingDetails";
 import Header from "./Header";
@@ -9,7 +9,6 @@ const BookinPage = () => {
   const navigate = useNavigate();
   const [destination, setdestination] = useState([]);
   const [data, setdata] = useState([]);
-  const [type,setType]=useState(false)
   const [cardetails, setcardetails] = useState(false);
   const [singlecar, setsinglecar] = useState({
     carname: "",
@@ -31,9 +30,9 @@ const BookinPage = () => {
     setcardetails(true);
   };
   useEffect(() => {
-    fetch("https://miles-node-ptu.onrender.com/user/getcars",{
+    fetch("https://miles-node-ptu.onrender.com/user/getcars", {
       headers: {
-        "authorization": JSON.parse(localStorage.getItem("userToken")),
+        authorization: JSON.parse(localStorage.getItem("userToken")),
       },
     })
       .then((response) => response.json())
@@ -41,13 +40,13 @@ const BookinPage = () => {
   }, []);
   // console.log(data);
   useEffect(() => {
-  fetch("https://miles-node-ptu.onrender.com/user/getbookingdetails",{
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      "authorization": JSON.parse(localStorage.getItem("userToken"))
-    },
-  })
+    fetch("https://miles-node-ptu.onrender.com/user/getbookingdetails", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: JSON.parse(localStorage.getItem("userToken")),
+      },
+    })
       .then((response) => response.json())
       .then((destination) =>
         setdestination(destination.data[destination.data.length - 1])
@@ -56,8 +55,8 @@ const BookinPage = () => {
   console.log(destination);
 
   const handleCarTypeChange = (event) => {
-    setType(true)
-    setCarType(event.target.value); // Update state with selected carType value
+    setCarType(event.target.value);
+    // Update state with selected carType value
   };
   useEffect(() => {
     if (carType === "all") {
@@ -66,8 +65,8 @@ const BookinPage = () => {
       const filteredCars = data.filter((car) => car.model === carType);
       setdata(filteredCars);
     }
-  }, [type]);
-  // console.log(data);
+  }, [carType]);
+  console.log(data);
 
   return (
     <>
@@ -129,7 +128,7 @@ const BookinPage = () => {
                 </div>
                 <div className="other flex flex-dir-r j-content">
                   <div className="fair-details">Details:{item.details}</div>
-                <Button
+                  <Button
                     variant="primary"
                     className="book-now"
                     // onClick={()=>console.log(item._id)}

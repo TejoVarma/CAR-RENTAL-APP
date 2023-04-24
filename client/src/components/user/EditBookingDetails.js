@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "../../styles/EditBookingDetails.css";
 import Header from "./Header";
+import MapComponent from "./MapComponent";
 const EditBookingDetails = () => {
   const navigate = useNavigate();
   // console.log(editBookedcar)
@@ -15,9 +16,9 @@ const EditBookingDetails = () => {
   const id = JSON.parse(localStorage.getItem("key"));
   const [selectedCar, setSelectedCar] = useState("");
   useEffect(() => {
-    fetch("https://miles-node-ptu.onrender.com/user/getbookingdetails",{
+    fetch("https://miles-node-ptu.onrender.com/user/getbookingdetails", {
       headers: {
-        "authorization": JSON.parse(localStorage.getItem("userToken")),
+        authorization: JSON.parse(localStorage.getItem("userToken")),
       },
     })
       .then((response) => response.json())
@@ -135,11 +136,7 @@ const EditBookingDetails = () => {
               </div>
 
               <div className="mini-3rd-div-img">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28788.78777019961!2d85.16637504100797!3d25.58502223107953!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ed5f5876b1ada3%3A0xc899c99a139e72e8!2sMahindra%20Kiran%20Automobiles!5e0!3m2!1sen!2sin!4v1679926472552!5m2!1sen!2sin"
-                  allowfullscreen=""
-                  loading="lazy"
-                ></iframe>
+                <MapComponent id={id} />
               </div>
             </div>
           </div>
@@ -199,14 +196,7 @@ const EditBookingDetails = () => {
 
             <div className="tax">
               <p>Sub Total</p>
-              <p>
-                Rs {Math.floor(Math.random() * 9000) + 1000}
-                {/* {editBookedcar.editBookedcar.BookedCar.singlecar.perkm * 150 +
-                  (editBookedcar.editBookedcar.BookedCar.singlecar.perkm *
-                    150 *
-                    18) /
-                    100} */}
-              </p>
+              <p>Rs {Math.floor(Math.random() * 9000) + 1000}</p>
             </div>
             <Button
               variant="primary"
@@ -216,7 +206,7 @@ const EditBookingDetails = () => {
                   method: "PATCH",
                   headers: {
                     "Content-Type": "application/json",
-                    authorization: JSON.parse(
+                    "authorization": JSON.parse(
                       localStorage.getItem("userToken")
                     ),
                   },

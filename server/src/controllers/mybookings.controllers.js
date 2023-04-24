@@ -67,6 +67,7 @@ exports.postbookings = async (req, res) => {
   }
 };
 exports.updatemybooking = async (req, res) => {
+  console.log(req)
   try {
     let token = await getToken(req.headers);
     let payload = await jwt.verify(token, process.env.SECRET);
@@ -75,12 +76,12 @@ exports.updatemybooking = async (req, res) => {
     if (token && newUser) {
     const { id } = req.params;
     const { carname,startdate, enddate, origin, destination } = req.body;
-    if (!startdate || !enddate || !origin || !destination||!carname) {
-      return res.status(401).send({
-        success: false,
-        message: "please fill all fields",
-      });
-    }
+    // if (!startdate || !enddate || !origin || !destination||!carname) {
+    //   return res.status(401).send({
+    //     success: false,
+    //     message: "please fill all fields",
+    //   });
+    // }
     const updatedDetails = await myBookings.findByIdAndUpdate(
       id,
       { carname,startdate, enddate, origin, destination },
