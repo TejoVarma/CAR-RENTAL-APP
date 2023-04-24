@@ -1,3 +1,13 @@
+.my-bookings-container-user{
+  width: 1450px;
+  height: 100vh;
+  box-shadow: 0px 10px 10px 0px;
+  margin-left: 180px;
+  margin-top: 20px;
+  padding-top: 25px;
+  border: 1px solid grey;
+  background-color: white;
+}
 .my-box {
   max-width: 1300px;
   height: 700px;
@@ -11,9 +21,9 @@
   max-width: 1350px;
   height: 180px;
   border: 1px solid black;
-  margin-top: 30px;
   display: flex;
   margin-left: 50px;
+  margin-bottom: 15px;
 }
 
 .one-div {
@@ -47,6 +57,7 @@
   gap: 20px;
   padding: 5px 5px;
 }
+
 .mini-3rd-div-img {
   width: 150px;
   height: 80px;
@@ -57,6 +68,7 @@
   height: 180px;
   border: 1px solid gray;
 }
+
 .mini-four-div {
   /* width: 150px; */
   display: flex;
@@ -72,6 +84,7 @@
   position: absolute;
   left: 1190px;
 }
+
 .edit-btn {
   /* position: relative;
   top: 100px;
@@ -81,8 +94,8 @@
   cursor: pointer; */
   position: absolute;
   top: 90px;
-  left:50px;
-  width:100px;
+  left: 50px;
+  width: 100px;
   height: 47px;
   border: 1px solid #007fed;
   border-radius: 34px;
@@ -98,28 +111,12 @@
   height: 45px; */
   position: absolute;
   top: 160px;
-  left:50px;
+  left: 50px;
   width: 100px;
   height: 47px;
   border: 1px solid #007fed;
   border-radius: 34px;
   opacity: 1;
-}
-
-.div-2 {
-  max-width: 1250px;
-  height: 180px;
-  border: 1px solid black;
-  margin-top: 30px;
-  display: flex;
-}
-
-.div-3 {
-  max-width: 1250px;
-  height: 180px;
-  border: 1px solid black;
-  margin-top: 30px;
-  display: flex;
 }
 
 h5 {
@@ -137,6 +134,7 @@ h5 {
   bottom: 75px;
   left: -15px;
 }
+
 iframe {
   height: 160px;
   width: 160px;

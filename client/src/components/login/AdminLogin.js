@@ -82,7 +82,7 @@ function AdminLogin() {
                   <Link to="/adminsignup" className='mb-4'>
                     <MDBBtn className='mb-4 btn-danger' size='lg' type='submit' style={{ marginRight: '10px' }}>Admin Signup</MDBBtn>
                   </Link>
-                  <Link to="/" className='mb-4'>
+                  <Link to="/userlogin" className='mb-4'>
                     <MDBBtn className='mb-4 btn-danger' size='lg' type='submit' style={{ marginLeft: '10px' }}>User Login</MDBBtn>
                   </Link>
                 </div>

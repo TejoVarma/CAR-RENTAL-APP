@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import "../../styles/EditBookingDetails.css";
 import Header from "./Header";
 import MapComponent from "./MapComponent";

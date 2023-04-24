@@ -1,3 +1,10 @@
+.EditBox{
+  width: 100vw;
+  height: 100vh;
+  background-image: url('../../public/logo.jpeg');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
 .flex {
   display: flex;
 }
