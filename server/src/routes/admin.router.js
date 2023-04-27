@@ -26,14 +26,21 @@ router.post("/createAdmin",[
     let secPassword = await bcrypt.hash(req.body.password,salt)
 
     try{
-        await admin.create({
-            name:req.body.name,
-            contact:req.body.contact,
-            email:req.body.email,
-            password:secPassword
-        })
-        res.json({success:true})
-
+        let validAdmin = admin.find({email : req.body.email});
+        if(!validAdmin)
+        {
+            await admin.create({
+                name:req.body.name,
+                contact:req.body.contact,
+                email:req.body.email,
+                password:secPassword
+            })
+            res.json({success:true})
+        }
+        else
+        {
+            res.json({success : false});
+        }
     } catch(error){
         res.json({success:false})
         console.log(error)
