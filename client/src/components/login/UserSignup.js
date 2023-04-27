@@ -33,7 +33,7 @@ function UserSignup() {
     console.log(json);
 
     if (!json.success) {
-      alert('Enter Valid credentials');
+      alert('User already exists');
     }
 
     if (json.success) {

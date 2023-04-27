@@ -33,7 +33,7 @@ function AdminSignup() {
     console.log(json);
 
     if (!json.success) {
-      alert('Enter Valid credentials');
+      alert('User Already Exists');
     }
     else {
       navigate('/adminlogin');

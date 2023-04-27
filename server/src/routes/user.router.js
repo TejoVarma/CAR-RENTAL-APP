@@ -27,14 +27,21 @@ router.post("/createUser",[
     let secPassword = await bcrypt.hash(req.body.password,salt)
 
     try{
-        await User.create({
-            name:req.body.name,
-            contact:req.body.contact,
-            email:req.body.email,
-            password:secPassword
-        })
-        res.json({success:true})
-
+        let validUser = await User.find({email : req.body.email});
+        if(!validUser)
+        {
+            await User.create({
+                name:req.body.name,
+                contact:req.body.contact,
+                email:req.body.email,
+                password:secPassword
+            })
+            res.json({success:true})
+        }
+        else
+        {
+            res.json({success : false});
+        }
     } catch(error){
         res.json({success:false})
         console.log(error)
