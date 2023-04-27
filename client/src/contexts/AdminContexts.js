@@ -13,18 +13,6 @@ export default function AdminContext({ children }) {
         });
         setPreview("");
     }, []);
-
-    useEffect(() => {
-        getCars().then(res => {
-            setCars(res.result.reverse());
-        });
-    }, [cars]);
-
-    useEffect(() => {
-        getCars().then(res => {
-            setCars(res.result.reverse());
-        })
-    }, [cars]);
     return <CarList.Provider value={{
         cars: cars,
         addCar: (car) => {
