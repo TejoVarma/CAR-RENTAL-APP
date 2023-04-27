@@ -33,7 +33,7 @@ function Map() {
   };
 
   return (
-    <LoadScript  googleMapsApiKey="AIzaSyBeYTEh1Wp1nF-GiAgwYBnoYliNTmuQC5w">
+    <LoadScript  googleMapsApiKey ="AIzaSyAljaTXiAfcHVRf7S5oWz8BLXNtmNCH7wE">
          <GoogleMap 
       mapContainerStyle={mapContainerStyle}
       zoom={8}
