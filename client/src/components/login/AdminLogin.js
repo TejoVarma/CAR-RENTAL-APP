@@ -41,7 +41,7 @@ function AdminLogin() {
       
       localStorage.setItem('adminToken', JSON.stringify(json.authToken));
       navigate("/admin");
-      // window.location.reload();
+      window.location.reload();
     }
 
   };
