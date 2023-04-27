@@ -42,7 +42,6 @@ function CarBooking() {
         console.error("Error:", error);
       });
     navigate("/booking");
-    window.location.reload();
     
   };
   return (
