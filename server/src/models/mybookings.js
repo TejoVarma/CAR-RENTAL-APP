@@ -46,10 +46,7 @@ const myBookingSchema = mongoose.Schema({
   image: {
     type: String,
   },
-  // users:{
-  //   type:mongoose.mongoose.Schema.Types.ObjectId,
-  //   ref:'User'
-  // }
+ 
 });
 const Bookings = mongoose.model("myBookings", myBookingSchema);
 module.exports = Bookings;

@@ -32,7 +32,7 @@ function MapComponent({id}) {
   };
 
   return (
-    <LoadScript  googleMapsApiKey = "AIzaSyAljaTXiAfcHVRf7S5oWz8BLXNtmNCH7wE">
+    <LoadScript  googleMapsApiKey = "">
          <GoogleMap 
       mapContainerStyle={mapContainerStyle}
       zoom={8}
