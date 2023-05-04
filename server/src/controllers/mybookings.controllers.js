@@ -10,7 +10,8 @@ exports.getmybookings = async (req, res) => {
     console.log(payload);
     let newUser = await User.findById(payload.user.id);
     if (token && newUser) {
-      const users = await myBookings.find({});
+      const {id}=req.params
+      const users = await myBookings.find({_id:id});
       return res.status(200).send({
         success: true,
         userCount: users.length,
@@ -36,16 +37,17 @@ exports.postbookings = async (req, res) => {
     // console.log(payload);
     let newUser = await User.findById(payload.user.id);
     if (token && newUser) {
+      console.log(newUser._id);
       const { startdate, enddate, origin, destination, carname, image } =
         req.body;
       const user = new myBookings({
+        _id:newUser._id,
         startdate,
         enddate,
         origin,
         destination,
         carname,
         image,
-        userId: newUser._id,
       });
 
       await user.save();
@@ -67,42 +69,35 @@ exports.postbookings = async (req, res) => {
   }
 };
 exports.updatemybooking = async (req, res) => {
-  console.log(req);
   try {
     let token = await getToken(req.headers);
     let payload = await jwt.verify(token, process.env.SECRET);
-    console.log(payload);
+
     let newUser = await User.findById(payload.user.id);
     if (token && newUser) {
-    const { id } = req.params;
-    const { carname, startdate, enddate, origin, destination } = req.body;
-    // if (!startdate || !enddate || !origin || !destination||!carname) {
-    //   return res.status(401).send({
-    //     success: false,
-    //     message: "please fill all fields",
-    //   });
-    // }
-    const updatedDetails = await myBookings.findByIdAndUpdate(
-      id,
-      { carname, startdate, enddate, origin, destination },
-      { new: true }
-    );
-    if (!updatedDetails) {
-      return res.status(404).send({
-        success: false,
-        message: "Booking details not found",
+      const { id } = req.params;
+      const { carname, startdate, enddate, origin, destination } = req.body;
+
+      const updatedDetails = await myBookings.findByIdAndUpdate(
+        id,
+        { carname, startdate, enddate, origin, destination },
+        { new: true }
+      );
+      if (!updatedDetails) {
+        return res.status(404).send({
+          success: false,
+          message: "Booking details not found",
+        });
+      }
+      return res.status(200).send({
+        success: true,
+        message: "Booking Details Updated Succesfully",
+        details: updatedDetails,
       });
-    }
-    return res.status(200).send({
-      success: true,
-      message: "Booking Details Updated Succesfully",
-      details: updatedDetails,
-    });
     } else {
       res.status(403).json({ status: "Failed", result: "Unauthorized" });
     }
   } catch (err) {
-    console.log(err);
     return res.status(500).send({
       success: false,
       message: "error in updated booking details",
@@ -114,7 +109,7 @@ exports.deletemybooking = async (req, res) => {
   try {
     let token = await getToken(req.headers);
     let payload = await jwt.verify(token, process.env.SECRET);
-    console.log(payload);
+
     let newUser = await User.findById(payload.user.id);
     if (token && newUser) {
       const bookingId = req.params.id;
@@ -134,7 +129,6 @@ exports.deletemybooking = async (req, res) => {
       res.status(403).json({ status: "Failed", result: "Unauthorized" });
     }
   } catch (err) {
-    console.log(err);
     return res.status(500).send({
       success: false,
       message: "error in deleting booking details",
@@ -146,7 +140,7 @@ exports.getmybookingbyid = async (req, res) => {
   try {
     let token = await getToken(req.headers);
     let payload = await jwt.verify(token, process.env.SECRET);
-    // console.log(payload);
+
     let newUser = await User.findById(payload.user.id);
     if (token && newUser) {
       const { bookingId } = req.params;
