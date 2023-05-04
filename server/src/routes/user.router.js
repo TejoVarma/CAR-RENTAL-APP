@@ -28,8 +28,6 @@ router.post("/createUser",[
 
     try{
         let validUser = await User.find({email : req.body.email});
-        if(!validUser)
-        {
             await User.create({
                 name:req.body.name,
                 contact:req.body.contact,
@@ -37,14 +35,9 @@ router.post("/createUser",[
                 password:secPassword
             })
             res.json({success:true})
-        }
-        else
-        {
-            res.json({success : false});
-        }
     } catch(error){
         res.json({success:false})
-        console.log(error)
+        // console.log(error)
 
     }
 

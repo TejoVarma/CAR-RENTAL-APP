@@ -22,7 +22,7 @@ carDetailsController.addNewCar = async function(req,res){
             let car = await new CAR_DETAILS({
                 ...req.body,
                 _id : uuid.v4(),
-                adminId : payload._id,
+                adminId : admin._id,
                 image : `image/${req.file.filename}`
             });
             let newCar = car.save();
@@ -44,9 +44,10 @@ carDetailsController.getCars = async function(req,res){
         let token = await getToken(req.headers);
         let payload = await jwt.verify(token,process.env.SECRET);
         let admin = await Admin.findById(payload.user.id);
+        // console.log(admin);
         if(token && admin)
         {
-            let cars = await CAR_DETAILS.find();
+            let cars = await CAR_DETAILS.find({adminId : admin._id});
             res.status(200).json({status : "Success", result: cars});
         }
         else
@@ -162,11 +163,11 @@ carDetailsController.deleteCar = async function(req,res){
             let car = await CAR_DETAILS.findById(req.params.id);
             if(car)
             {
-                await CAR_DETAILS.findByIdAndDelete(req.params.id);
                 // let file = await filesSchema.findOne({filename : car.image});
                 // await chunksSchema.deleteMany({files_id : file._id});
                 // //del file
                 // await filesSchema.deleteOne({_id : file._id});
+                await CAR_DETAILS.findByIdAndDelete(req.params.id);
                 res.status(200).json({status : "Success", message : "Successfully deleted"});
             }
             else

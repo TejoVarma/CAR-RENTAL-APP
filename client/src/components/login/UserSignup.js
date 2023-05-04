@@ -21,7 +21,7 @@ function UserSignup() {
     const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch('https://miles-node-ptu.onrender.com/api/createUser', {
+    const response = await fetch('http://localhost:4000/api/createUser', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -33,7 +33,13 @@ function UserSignup() {
     console.log(json);
 
     if (!json.success) {
-      alert('User already exists');
+      if(json.errors){
+        alert('All fields are mandatory');
+      }
+      else
+      {
+        alert('User Already Exists');
+      }
     }
 
     if (json.success) {
