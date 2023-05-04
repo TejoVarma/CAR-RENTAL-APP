@@ -66,7 +66,7 @@ export default function AdminEditCar(){
                     });
                     // setLoader(false);
                     navigate("/admin");
-                    window.location.reload();
+                    // window.location.reload();
                 } else {
                     // setLoader(false);
                     alert("Failed to edit car, try again...")
@@ -83,7 +83,7 @@ export default function AdminEditCar(){
                     deleteCarContext();
                     setEdit(false);
                     navigate('/admin')
-                    window.location.reload();
+                    // window.location.reload();
                 }
                 else
                 {

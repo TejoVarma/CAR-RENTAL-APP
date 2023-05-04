@@ -102,7 +102,6 @@ body{
 }
 
 .car-cards-container-admin{
-    height: 100vh;
     padding : 10px;
     border: 2px solid grey;
     border-radius: 10px;

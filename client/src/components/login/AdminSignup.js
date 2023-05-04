@@ -21,7 +21,7 @@ function AdminSignup() {
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch('https://miles-node-ptu.onrender.com/api/createAdmin', {
+    const response = await fetch('http://localhost:4000/api/createAdmin', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -31,9 +31,14 @@ function AdminSignup() {
 
     const json = await response.json();
     console.log(json);
-
     if (!json.success) {
-      alert('User Already Exists');
+      if(json.errors){
+        alert('All fields are mandatory');
+      }
+      else
+      {
+        alert('User Already Exists');
+      }
     }
     else {
       navigate('/adminlogin');

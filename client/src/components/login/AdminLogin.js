@@ -32,7 +32,7 @@ function AdminLogin() {
     });
 
     const json = await response.json();
-    console.log(json);
+    // console.log(json);
     if (!json.success) {
       alert('Enter Valid credentials');
     }
@@ -41,7 +41,7 @@ function AdminLogin() {
       
       localStorage.setItem('adminToken', JSON.stringify(json.authToken));
       navigate("/admin");
-      window.location.reload();
+      // window.location.reload();
     }
 
   };

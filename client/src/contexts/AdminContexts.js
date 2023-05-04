@@ -7,12 +7,12 @@ export default function AdminContext({ children }) {
 
     const [cars, setCars] = useState([]);
     const [preview, setPreview] = useState("");
-    useEffect(() => {
-        getCars().then(res => {
-            setCars(res.result.reverse());
-        });
-        setPreview("");
-    }, []);
+    // useEffect(() => {
+    //     getCars().then(res => {
+    //         setCars(res.result.reverse());
+    //     });
+    //     setPreview("");
+    // }, []);
     return <CarList.Provider value={{
         cars: cars,
         addCar: (car) => {
